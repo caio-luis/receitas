@@ -26,6 +26,8 @@ object Dependencies {
     const val constraintLayout =
         "androidx.constraintlayout:constraintlayout:${DesignVersions.constraintLayoutVersion}"
     const val gson = "com.google.code.gson:gson:${Versions.gson}"
-    const val materialDesign = "com.google.android.material:material:${Versions.materialDesign}"
-    const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
+    const val materialDesign = "com.google.android.material:material:${DesignVersions.materialDesign}"
+    const val recyclerView = "androidx.recyclerview:recyclerview:${DesignVersions.recyclerView}"
+    const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
+    const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
 }

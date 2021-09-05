@@ -9,17 +9,18 @@ internal object KotlinCoreVersions {
 }
 
 internal object BuildVersions {
-    const val androidGradle = "4.1.3"
+    const val androidGradle = "7.0.2"
 }
 
 internal object DesignVersions {
     const val constraintLayoutVersion = "2.1.0"
+    const val materialDesign = "1.4.0"
+    const val recyclerView = "1.2.0"
 }
 
 internal object Versions {
     const val gson = "2.8.8"
-    const val recyclerView = "1.2.0"
-    const val materialDesign = "1.4.0"
+    const val dagger = "2.37"
 }
 
 internal object TestVersions {

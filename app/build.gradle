@@ -42,4 +42,6 @@ dependencies {
     implementation Dependencies.materialDesign
     implementation Dependencies.recyclerView
     implementation Dependencies.gson
+    implementation Dependencies.dagger
+    kapt Dependencies.daggerCompiler
 }
