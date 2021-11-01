@@ -1,0 +1,86 @@
+[
+  {
+    "id": "5744eff20ca7832b5c745dd0",
+    "nome": "Alfajor de chocolate",
+    "secao": [
+      {
+        "nome": " Modo de Preparo",
+        "conteudo": [
+          "Massa ",
+          "Em uma vasilha, coloque 250g de pão preto triturado (ou ralado), 90g de chocolate meio amargo derretido, 15g de manteiga, 1 colher (sopa) de rum e misture para formar uma massa. Abra a massa entre dois sacos plásticos até uma altura de 0,3 cm e corte discos com um aro de 6,5 cm de diâmetro. Reserve.",
+          "Recheio ",
+          "Em uma panela, coloque 10ml de água, 50g de açúcar e leve ao fogo alto até ferver. Acrescente 25g de amêndoa sem pele, 25g de avelã sem pele e misture bem. Retire a panela do fogo e continue mexendo até que as amêndoas e avelãs fiquem esbranquiçadas. Leve de volta ao fogo e deixe derreter o açúcar que cristalizou. Quando os frutos secos estiverem cristalizados e começarem a estalar, espalhe-os em uma assadeira untada com óleo e deixe esfriar. Transfira o crocante obtido para o processador e triture até obter um pó fino. Misture este pó obtido com 150g de chocolate meio amargo picado e derreta-o em banho-maria. Deixe esfriar. Em uma tigela, junte o chocolate derretido com 50ml de creme de leite fresco batido em ponto de chantilly. Reserve.",
+          "Montagem ",
+          "Pegue um disco de massa, coloque 1 colher (sopa cheia) da mousse, e tampe com outro disco de massa. Leve à geladeira para firmar por cerca de 30 minutos. Banhe os alfajores em chocolate meio amargo derretido, coloque sobre papel manteiga e deixe endurecer. Retire as rebarbas e sirva em seguida.",
+          " "
+        ]
+      },
+      {
+        "nome": " Outras informações",
+        "conteudo": [
+          "Rende 8 porções."
+        ]
+      }
+    ],
+    "ingredientes": [
+      "Massa: ",
+      "250g de pão preto triturado (ou ralado)",
+      "90g de chocolate meio amargo derretido",
+      "15g de manteiga",
+      "1 colher (sopa) de rum",
+      "Recheio: ",
+      "10ml de água",
+      "50g de açúcar",
+      "25g de amêndoas sem pele",
+      "25g de avelãs sem pele",
+      "150g de chocolate meio amargo picado",
+      "50 ml de creme de leite fresco batido em ponto de chantilly",
+      "300g chocolate meio amargo para banhar"
+    ]
+  },
+  {
+    "id": "5744eff20ca7832b5c745af4",
+    "nome": "Alfajor de Chocolate, Geleia de Laranja e Babaganuche Tradicional",
+    "secao": [
+      {
+        "nome": " Modo de Preparo",
+        "conteudo": [
+          "1 - Misture a manteiga com o açúcar e, depois, o ovo inteiro. Incorpore a baunilha e cacau e misture bem. Depois, acrescente o outro pré-misturado seco (farinha, amido de milho, o bicarbonato, o fermento em pó). Misture soltando um pouco e deixe esfriar por 40 minutos na geladeira. Coloque farinha de mesa para esticar a massa com um rolo de massa na espessura desejada (entre 2 e 5 minutos.) e corte em discos de 5 a 6cm de diâmetro. Coloque os discos em uma assadeira enfarinhada e leve ao forno aquecido a 170°c por cerca de 10 minutos. Deixe esfriar. Coloque o doce de leite sobre a superfície de um biscoito e coloque outro biscoito em cima, tipo sanduíche. Derreta a cobertura previamente e mergulhe o alfajor. Retire com um garfo, deixe escorrer e seque em papel manteiga.",
+          "Geleia Laranja/Limão ",
+          "1 - Divida entre seis e oito laranjas em quatro partes. Retire a casca e a parte mais grossa do meio (aquela parte bem branquinha). Triture com o mixe com o suco de um limão e leve ao fogo com açúcar.",
+          "2 - Bata a laranja com o limão no liquidificador. Use a metade da quantidade obtida de açúcar.",
+          "3 - Se você misturou no liquidificador a laranja com o suco de limão e obteve uma xícara (média de chá) de purê de frutas, acrescente 1/2 xícara de açúcar. É sempre a metade da quantidade de purê de fruta. A preferência é usar essa quantidade sempre.",
+          "4 - Leve ao fogo o purê de laranja com açúcar e mexa em fogo baixo até engrossar e vai ficando de olho. No fogo deixe entre duas e três horas até sentir que a geleia está consistente. Colocar em potes de preferência e fechar. Quando esfriar pode deixá-los na geladeira.",
+          "Babaganuche Tradicional",
+          "1 - Passe uma faca grande duas vezes na berinjela, atravessando-a de um lado para o outro, para tirar o excesso de água. Coloque as berinjelas direto no forno para assar um lado e depois o outro até que estejam ligeiramente queimadas. Em seguida, coloque-as em água fria para descascar (facilitar o trabalho!). Descarte a casca e use somente o miolo dentro da berinjela. Corte bastante a berinjela até ficar com consistência de pasta, junte a cebola e o tomate em pedaços bem pequenos. Misturar tudo com o sal e colocar no prato. Para finalizar, jogue a semente de romã e as nozes em cima. Regue com um pouco de molho de romã e azeite. Servir com pão árabe, fresco ou torrado.",
+          " "
+        ]
+      }
+    ],
+    "ingredientes": [
+      "Alfajor de Chocolate",
+      "Massa:",
+      "- 400g de farinha",
+      "- Amido 100g",
+      "- 10g de cacau em pó",
+      "- Bicarbonato de sódio: 1 colher de chá",
+      "- Fermento em pó: 1 colher de sopa (12g)",
+      "- 200g de manteiga sem sal",
+      "- 150g de açúcar",
+      "- Uma colher de chá de essência de baunilha",
+      "-1 ovo",
+      "Recheio",
+      "- Doce de leite Cobertura",
+      "- 200g de cobertura hidrogenada de chocolate.",
+      "Babaganuche Tradicional",
+      "- Uma berinjela grande 1/2 quilo",
+      "- 1 cebola média",
+      "- 1 tomate",
+      "- 50g de nozes",
+      "- 30g de romã importadas sem caroço",
+      "- Um pouco de molho de romã",
+      "- Azeite",
+      "- Sal"
+    ]
+  }
+]

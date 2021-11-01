@@ -1,7 +1,7 @@
-package com.caioluis.receitas.presentation
+package com.caioluis.receitas.presentation.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.caioluis.receitas.R
 
 class MainActivity : AppCompatActivity() {

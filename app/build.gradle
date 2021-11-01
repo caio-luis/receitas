@@ -1,9 +1,7 @@
-plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-    id 'kotlin-android-extensions'
-    id 'kotlin-kapt'
-}
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdk 30
@@ -17,11 +15,20 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        String sharedTestDir = 'src/sharedTest/java'
+        test {
+            java.srcDir sharedTestDir
+        }
+        androidTest {
+            java.srcDir sharedTestDir
+            resources.srcDirs += ['src/test/resources']
         }
     }
     compileOptions {
@@ -29,19 +36,36 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = "1.8"
     }
 }
 
 dependencies {
     implementation CoreDependencies.kotlinStdLib
-    implementation CoreDependencies.ktxCore
     implementation CoreDependencies.appCompat
+    implementation CoreDependencies.ktxCore
 
     implementation Dependencies.constraintLayout
     implementation Dependencies.materialDesign
-    implementation Dependencies.recyclerView
+    implementation Dependencies.rxAndroid
+    implementation Dependencies.rxKotlin
+    implementation Dependencies.rxJava
     implementation Dependencies.gson
-    implementation Dependencies.dagger
-    kapt Dependencies.daggerCompiler
+
+    implementation Dependencies.roomRxJava2
+    implementation Dependencies.room
+    kapt Dependencies.roomCompiler
+
+    testImplementation TestDependencies.junit
+    testImplementation TestDependencies.coreTesting
+    testImplementation TestDependencies.mockitoCore
+
+    androidTestImplementation TestDependencies.androidxJUnit
+    androidTestImplementation TestDependencies.androidTestRunner
+    androidTestImplementation TestDependencies.androidTestRules
+    androidTestImplementation TestDependencies.androidTestCore
+    androidTestImplementation TestDependencies.androidCoreKtx
+    androidTestImplementation TestDependencies.coreTesting
+
+    kaptAndroidTest Dependencies.daggerCompiler
 }

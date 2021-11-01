@@ -1,11 +1,11 @@
-package com.caioluis.receitas.domain
+package com.caioluis.receitas.data.model
 
 import com.google.gson.annotations.SerializedName
 
 data class Section(
     @SerializedName("nome")
-    val sectionName: String,
+    val sectionName: String? = "",
 
     @SerializedName("conteudo")
-    val content: List<String>
+    val content: List<String>? = listOf()
 )
