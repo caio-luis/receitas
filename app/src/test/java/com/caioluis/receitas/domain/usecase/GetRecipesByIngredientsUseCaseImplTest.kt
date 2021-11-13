@@ -1,7 +1,7 @@
 package com.caioluis.receitas.domain.usecase
 
 import com.caioluis.receitas.Fixtures
-import com.caioluis.receitas.data.local.RecipesDataSource
+import com.caioluis.receitas.data.RecipesDataSource
 import com.caioluis.receitas.presentation.structure.RecipesEffect
 import com.caioluis.receitas.toDomain
 import com.caioluis.receitas.util.TrampolineSchedulerProvider
@@ -46,7 +46,7 @@ class GetRecipesByIngredientsUseCaseImplTest {
     }
 
     @Test
-    fun `sshould return Loading and ShowRecipes effect in sequence with content`() {
+    fun `should return Loading and ShowRecipes effect in sequence with content`() {
         val recipesMock = Fixtures.getRecipesMockFromJsonResource().map { it.toDomain() }
 
         whenever(recipesDataSourceMock.getRecipes(anyList()))

@@ -7,9 +7,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.caioluis.receitas.data.local.database.RecipesDao
 import com.caioluis.receitas.data.local.database.RecipesDataBase
 import com.caioluis.receitas.data.local.mapper.IngredientsSearchSqlQueryMapper
-import com.caioluis.receitas.data.model.Recipe
 import io.reactivex.Observable
-import io.reactivex.Single
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -36,7 +34,6 @@ class RecipesDataBaseTest {
         val entities = Fixtures.recipes
 
         val writeObservable = Observable.just(dao.insertRecipes(entities))
-
 
         val readObservable = dao.getRecipesByIngredients(
             ingredientsSearchSqlQueryMapper(listOf("ovo", "sal"))
