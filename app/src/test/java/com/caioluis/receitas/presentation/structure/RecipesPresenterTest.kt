@@ -40,7 +40,7 @@ class RecipesPresenterTest {
     }
 
     @Test
-    fun teste() {
+    fun `assert that search event dispatch correctly`() {
 
         presenter.dispatchCommand(RecipeUiEvent.Search(listOf()))
 
@@ -49,18 +49,6 @@ class RecipesPresenterTest {
             .assertValue(
                 RecipesState(loading = false)
             )
-            .assertComplete()
-            .assertNoErrors()
-
-        val testObserver = presenter.commandSubject.test()
-
-        testObserver.awaitTerminalEvent()
-
-        testObserver
-            .assertSubscribed()
-            .assertValues(
-                RecipesCommand.SearchRecipes(listOf())
-            ).assertComplete()
             .assertNoErrors()
     }
 }

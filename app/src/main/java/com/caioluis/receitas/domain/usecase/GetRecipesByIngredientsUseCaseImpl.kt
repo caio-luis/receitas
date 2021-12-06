@@ -18,7 +18,7 @@ class GetRecipesByIngredientsUseCaseImpl(
     private fun getRecipesEffect(observable: Observable<List<DomainRecipe>>): Observable<RecipesEffect> {
         return observable
             .subscribeOn(scheduler.ui())
-            .observeOn(scheduler.ui())
+            .observeOn(scheduler.io())
             .map(::handleResult)
             .startWith(RecipesEffect.Loading)
             .onErrorReturn(RecipesEffect::Error)

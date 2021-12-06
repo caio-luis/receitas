@@ -11,29 +11,25 @@ class RecipesPresenter(
     private val recipesReducer: RecipesReducer,
     private val initialState: RecipesState = RecipesState(),
 ) {
-    val commandSubject = PublishSubject.create<RecipesCommand>()
+    private val commandSubject = PublishSubject.create<RecipesCommand>()
     val stateSubject = BehaviorSubject.createDefault(initialState)
     private val disposables: MutableList<Disposable> = mutableListOf()
     private val uiEventTransformer: RecipesUiEventTransformer = RecipesUiEventTransformer()
 
     init {
-        disposables += commandSubject.doOnNext {
-            disposables += subscribeInteractor(it)
-        }.subscribe()
-    }
-
-    private fun subscribeInteractor(command: RecipesCommand): Disposable {
-        return recipesInteractor(
-            state = stateSubject.value ?: initialState,
-            command = command
-        ).doOnNext { effect ->
-            val newState = recipesReducer(
-                state = stateSubject.value ?: initialState,
-                effect = effect
-            )
-            stateSubject.onNext(newState)
-            stateSubject.subscribe()
-        }.subscribe()
+        disposables += commandSubject
+            .distinctUntilChanged()
+            .flatMap { command ->
+                recipesInteractor(
+                    state = stateSubject.value ?: initialState,
+                    command = command
+                )
+            }.map { effect ->
+                recipesReducer(
+                    state = stateSubject.value ?: initialState,
+                    effect = effect
+                )
+            }.subscribe(stateSubject::onNext)
     }
 
     fun dispatchCommand(recipesEvent: RecipeUiEvent) {
@@ -42,9 +38,8 @@ class RecipesPresenter(
 
     fun clear() {
         disposables.map {
-            if (!it.isDisposed) {
+            if (!it.isDisposed)
                 it.dispose()
-            }
         }
     }
 }
