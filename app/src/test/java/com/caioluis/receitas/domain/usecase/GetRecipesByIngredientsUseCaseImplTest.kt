@@ -15,7 +15,6 @@ import org.mockito.Mockito.mock
 import org.mockito.junit.MockitoJUnitRunner
 import org.mockito.Mockito.`when` as whenever
 
-@RunWith(MockitoJUnitRunner::class)
 class GetRecipesByIngredientsUseCaseImplTest {
 
     private lateinit var getRecipesByIngredientsUseCase: GetRecipesByIngredientsUseCase

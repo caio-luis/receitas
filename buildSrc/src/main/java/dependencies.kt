@@ -1,7 +1,3 @@
-/**
- * Created by Caio Luis (caio-luis) on 04/09/21
- */
-
 object CoreDependencies {
     const val ktxCore = "androidx.core:core-ktx:${KotlinCoreVersions.ktxCoreVersion}"
     const val kotlinStdLib =

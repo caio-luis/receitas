@@ -14,7 +14,7 @@ import org.mockito.Mockito.`when` as whenever
 @RunWith(MockitoJUnitRunner::class)
 class RecipesInteractorTest {
 
-    private lateinit var interactor: RecipesInteractor
+    private lateinit var interactor: RecipesInteractorImpl
 
     @Mock
     private lateinit var getRecipesByIngredientsUseCase: GetRecipesByIngredientsUseCase
@@ -22,14 +22,14 @@ class RecipesInteractorTest {
     @Before
     fun setup() {
         getRecipesByIngredientsUseCase = mock(GetRecipesByIngredientsUseCase::class.java)
-        interactor = RecipesInteractor(getRecipesByIngredientsUseCase)
+        interactor = RecipesInteractorImpl(getRecipesByIngredientsUseCase)
     }
 
     @Test
     fun `when invoke interactor with SearchRecipes command should return ShowRecipes effect`() {
         val getRecipesByIngredientsUseCaseTest = FakeUseCase(RecipesEffect.ShowRecipes(emptyList()))
 
-        val interactor = RecipesInteractor(getRecipesByIngredientsUseCaseTest)
+        val interactor = RecipesInteractorImpl(getRecipesByIngredientsUseCaseTest)
 
         val response = interactor.invoke(
             RecipesState(false, listOf(), mutableListOf()),
@@ -42,7 +42,7 @@ class RecipesInteractorTest {
     @Test
     fun `when invoke interactor with AddIngredient command should return AddIngredient effect`() {
         val getRecipesByIngredientsUseCaseTest = FakeUseCase(RecipesEffect.AddIngredient(""))
-        val interactor = RecipesInteractor(getRecipesByIngredientsUseCaseTest)
+        val interactor = RecipesInteractorImpl(getRecipesByIngredientsUseCaseTest)
 
         val response = interactor.invoke(
             RecipesState(false, listOf(), mutableListOf()),

@@ -56,6 +56,7 @@ dependencies {
 
     implementation Dependencies.roomRxJava2
     implementation Dependencies.room
+    kapt Dependencies.daggerCompiler
     kapt Dependencies.roomCompiler
 
     testImplementation TestDependencies.junit
@@ -69,5 +70,4 @@ dependencies {
     androidTestImplementation TestDependencies.androidCoreKtx
     androidTestImplementation TestDependencies.coreTesting
 
-    kaptAndroidTest Dependencies.daggerCompiler
 }

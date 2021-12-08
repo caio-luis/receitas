@@ -12,7 +12,7 @@ import org.junit.runners.Parameterized
 @RunWith(Parameterized::class)
 class RecipesReducerTest(private val parameter: Parameter) {
 
-    private lateinit var recipesReducer: RecipesReducer
+    private lateinit var recipesReducer: RecipesReducerImpl
 
     companion object {
         @JvmStatic
@@ -88,7 +88,7 @@ class RecipesReducerTest(private val parameter: Parameter) {
 
     @Before
     fun setup() {
-        recipesReducer = RecipesReducer(AddIngredientsToListUseCaseImpl())
+        recipesReducer = RecipesReducerImpl(AddIngredientsToListUseCaseImpl())
     }
 
     @Test
