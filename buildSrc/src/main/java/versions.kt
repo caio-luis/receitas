@@ -16,7 +16,7 @@ internal object DesignVersions {
 
 internal object Versions {
     const val gson = "2.8.8"
-    const val dagger = "2.37"
+    const val dagger = "2.40"
     const val rxJava = "2.2.19"
     const val rxKotlin = "2.4.0"
     const val rxAndroid = "2.1.1"

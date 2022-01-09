@@ -56,6 +56,7 @@ dependencies {
 
     implementation Dependencies.roomRxJava2
     implementation Dependencies.room
+    implementation Dependencies.dagger
     kapt Dependencies.daggerCompiler
     kapt Dependencies.roomCompiler
 
