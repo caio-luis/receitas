@@ -6,8 +6,11 @@ import com.caioluis.receitas.data.local.database.RecipesDao
 import com.caioluis.receitas.data.local.database.RecipesDataBase
 import com.caioluis.receitas.data.local.mapper.IngredientsSearchSqlQueryMapper
 import com.caioluis.receitas.data.local.mapper.RecipesLocalMapper
+import com.caioluis.receitas.domain.usecase.AddIngredientsOnListUseCase
+import com.caioluis.receitas.domain.usecase.AddIngredientsToListUseCaseImpl
 import com.caioluis.receitas.domain.usecase.GetRecipesByIngredientsUseCase
 import com.caioluis.receitas.domain.usecase.GetRecipesByIngredientsUseCaseImpl
+import com.caioluis.receitas.presentation.structure.*
 import com.caioluis.receitas.util.BaseSchedulerProvider
 import dagger.Module
 import dagger.Provides
@@ -15,28 +18,51 @@ import dagger.Provides
 @Module
 object RecipesModule {
 
-    @Provides
+    // Use Cases
+    @Provides @JvmStatic
+    fun provideAddIngredientsOnListUseCase(): AddIngredientsOnListUseCase =
+        AddIngredientsToListUseCaseImpl()
+
+    @Provides @JvmStatic
     fun provideGetRecipesByIngredientsUseCase(
         dataSource: RecipesDataSource,
         scheduler: BaseSchedulerProvider
     ): GetRecipesByIngredientsUseCase = GetRecipesByIngredientsUseCaseImpl(dataSource, scheduler)
 
-    @Provides
+    // Mappers
+    @Provides @JvmStatic
+    fun provideIngredientsSearchSqlQueryMapper(): IngredientsSearchSqlQueryMapper =
+        IngredientsSearchSqlQueryMapper.Impl()
+
+    @Provides @JvmStatic
+    fun provideRecipesLocalMapper(): RecipesLocalMapper = RecipesLocalMapper.Impl()
+
+    // Data
+    @Provides @JvmStatic
     fun provideRecipesDataSource(
         dao: RecipesDao,
         mapper: RecipesLocalMapper,
         queryMapperIngredientsSearch: IngredientsSearchSqlQueryMapper
     ): RecipesDataSource = RecipesDataSource.LocalImpl(dao, mapper, queryMapperIngredientsSearch)
 
-    @Provides
-    fun provideRecipesLocalMapper(): RecipesLocalMapper = RecipesLocalMapper.Impl()
+    @Provides @JvmStatic
+    fun provideRecipesDao(context: Context): RecipesDao =
+        RecipesDataBase.getInstance(context).recipesDao()
 
-    @Provides
-    fun provideRecipesDao(
-        context: Context
-    ): RecipesDao = RecipesDataBase.getInstance(context).recipesDao()
+    // Presentation
+    @Provides @JvmStatic
+    fun provideRecipesPresenter(
+        recipesInteractor: RecipesInteractor,
+        recipesReducer: RecipesReducer
+    ): RecipesPresenter = RecipesPresenter(recipesInteractor, recipesReducer)
 
-    @Provides
-    fun provideIngredientsSearchSqlQueryMapper(): IngredientsSearchSqlQueryMapper =
-        IngredientsSearchSqlQueryMapper.Impl()
+    @Provides @JvmStatic
+    fun provideRecipesReducer(
+        addIngredientsOnListUseCase: AddIngredientsOnListUseCase
+    ): RecipesReducer = RecipesReducerImpl(addIngredientsOnListUseCase)
+
+    @Provides @JvmStatic
+    fun provideRecipesInteractor(
+        getRecipesByIngredientsUseCase: GetRecipesByIngredientsUseCase
+    ): RecipesInteractor = RecipesInteractorImpl(getRecipesByIngredientsUseCase)
 }
