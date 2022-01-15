@@ -2,11 +2,9 @@ package com.caioluis.receitas.presentation.structure
 
 import com.caioluis.receitas.data.RecipesDataSource
 import com.caioluis.receitas.domain.usecase.GetRecipesByIngredientsUseCase
-import com.caioluis.receitas.presentation.view.RecipeUiEvent
+import com.caioluis.receitas.presentation.ui.RecipeUiEvent
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
 import org.mockito.Mock
 import org.mockito.Mockito.mock
 

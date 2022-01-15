@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdk 30
+    compileSdk 31
 
     defaultConfig {
         applicationId "com.caioluis.receitas"
@@ -14,6 +14,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
     }
     buildTypes {
         release {
@@ -39,6 +42,19 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+        useIR = true
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion DesignVersions.compose
+        kotlinCompilerVersion KotlinCoreVersions.kotlinVersion
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
     }
 }
 
@@ -49,14 +65,20 @@ dependencies {
 
     implementation Dependencies.constraintLayout
     implementation Dependencies.materialDesign
+    debugImplementation Dependencies.composeUiTooling
+    implementation Dependencies.composeMaterial
+    implementation Dependencies.composeActivity
+    implementation Dependencies.composeUi
+
     implementation Dependencies.rxAndroid
     implementation Dependencies.rxKotlin
     implementation Dependencies.rxJava
     implementation Dependencies.gson
-
     implementation Dependencies.roomRxJava2
     implementation Dependencies.room
     implementation Dependencies.dagger
+    implementation Dependencies.lifecycle
+
     kapt Dependencies.daggerCompiler
     kapt Dependencies.roomCompiler
 
@@ -70,5 +92,4 @@ dependencies {
     androidTestImplementation TestDependencies.androidTestCore
     androidTestImplementation TestDependencies.androidCoreKtx
     androidTestImplementation TestDependencies.coreTesting
-
 }

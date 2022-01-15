@@ -41,4 +41,11 @@ object Dependencies {
     const val room = "androidx.room:room-runtime:${Versions.room}"
     const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
     const val roomRxJava2 = "androidx.room:room-rxjava2:${Versions.room}"
+
+    const val composeUi = "androidx.compose.ui:ui:${DesignVersions.compose}"
+    const val composeMaterial = "androidx.compose.material:material:${DesignVersions.compose}"
+    const val composeUiTooling = "androidx.compose.ui:ui-tooling:${DesignVersions.compose}"
+    const val composeActivity = "androidx.activity:activity-compose:${DesignVersions.activityCompose}"
+
+    const val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
 }

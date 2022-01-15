@@ -1,4 +1,4 @@
-package com.caioluis.receitas.presentation.view
+package com.caioluis.receitas.presentation.ui
 
 import com.caioluis.receitas.presentation.structure.RecipesCommand
 

@@ -10,8 +10,10 @@ internal object BuildVersions {
 
 internal object DesignVersions {
     const val constraintLayoutVersion = "2.1.1"
-    const val materialDesign = "1.4.0"
+    const val materialDesign = "1.5.0"
     const val recyclerView = "1.2.0"
+    const val compose = "1.0.5"
+    const val activityCompose = "1.4.0"
 }
 
 internal object Versions {
@@ -21,6 +23,7 @@ internal object Versions {
     const val rxKotlin = "2.4.0"
     const val rxAndroid = "2.1.1"
     const val room = "2.3.0"
+    const val lifecycle = "2.4.0"
 }
 
 internal object TestVersions {

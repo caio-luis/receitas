@@ -1,7 +1,7 @@
 package com.caioluis.receitas.presentation.structure
 
-import com.caioluis.receitas.presentation.view.RecipeUiEvent
-import com.caioluis.receitas.presentation.view.RecipesUiEventTransformer
+import com.caioluis.receitas.presentation.ui.RecipeUiEvent
+import com.caioluis.receitas.presentation.ui.RecipesUiEventTransformer
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
