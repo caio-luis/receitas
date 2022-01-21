@@ -21,6 +21,7 @@ import com.caioluis.receitas.presentation.ui.components.BasicAppBar
 import com.caioluis.receitas.presentation.ui.components.RecipesList
 import com.caioluis.receitas.presentation.ui.components.SearchBoxComponent
 import com.caioluis.receitas.util.fakeRecipes
+import dagger.android.AndroidInjection
 import javax.inject.Inject
 
 @ExperimentalMaterialApi
@@ -30,6 +31,7 @@ class RecipesActivity : ComponentActivity() {
     lateinit var recipesPresenter: RecipesPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContent { RecipesActivityLayout() }
     }

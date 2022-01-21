@@ -29,10 +29,13 @@ object Dependencies {
     const val constraintLayout =
         "androidx.constraintlayout:constraintlayout:${DesignVersions.constraintLayoutVersion}"
     const val gson = "com.google.code.gson:gson:${Versions.gson}"
-    const val materialDesign = "com.google.android.material:material:${DesignVersions.materialDesign}"
+    const val materialDesign =
+        "com.google.android.material:material:${DesignVersions.materialDesign}"
     const val recyclerView = "androidx.recyclerview:recyclerview:${DesignVersions.recyclerView}"
     const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
     const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
+    const val daggerAndroid = "com.google.dagger:dagger-android:${Versions.dagger}"
+    const val daggerProcessor = "com.google.dagger:dagger-android-processor:${Versions.dagger}"
 
     const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
     const val rxAndroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}"
@@ -45,7 +48,8 @@ object Dependencies {
     const val composeUi = "androidx.compose.ui:ui:${DesignVersions.compose}"
     const val composeMaterial = "androidx.compose.material:material:${DesignVersions.compose}"
     const val composeUiTooling = "androidx.compose.ui:ui-tooling:${DesignVersions.compose}"
-    const val composeActivity = "androidx.activity:activity-compose:${DesignVersions.activityCompose}"
+    const val composeActivity =
+        "androidx.activity:activity-compose:${DesignVersions.activityCompose}"
 
     const val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
 }

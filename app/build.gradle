@@ -77,10 +77,12 @@ dependencies {
     implementation Dependencies.roomRxJava2
     implementation Dependencies.room
     implementation Dependencies.dagger
+    implementation Dependencies.daggerAndroid
     implementation Dependencies.lifecycle
 
     kapt Dependencies.daggerCompiler
     kapt Dependencies.roomCompiler
+    kapt Dependencies.daggerProcessor
 
     testImplementation TestDependencies.junit
     testImplementation TestDependencies.coreTesting
