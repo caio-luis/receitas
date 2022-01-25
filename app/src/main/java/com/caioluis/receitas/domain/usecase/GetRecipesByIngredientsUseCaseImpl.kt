@@ -2,6 +2,7 @@ package com.caioluis.receitas.domain.usecase
 
 import com.caioluis.receitas.data.RecipesDataSource
 import com.caioluis.receitas.domain.model.DomainRecipe
+import com.caioluis.receitas.presentation.mapper.toViewModel
 import com.caioluis.receitas.presentation.structure.RecipesEffect
 import com.caioluis.receitas.util.BaseSchedulerProvider
 import io.reactivex.Observable
@@ -25,5 +26,5 @@ class GetRecipesByIngredientsUseCaseImpl(
     }
 
     private fun handleResult(recipes: List<DomainRecipe>): RecipesEffect =
-        RecipesEffect.ShowRecipes(recipes)
+        RecipesEffect.ShowRecipes(recipes.map { it.toViewModel() })
 }

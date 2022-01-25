@@ -10,6 +10,7 @@ import com.caioluis.receitas.domain.usecase.AddIngredientsOnListUseCase
 import com.caioluis.receitas.domain.usecase.AddIngredientsToListUseCaseImpl
 import com.caioluis.receitas.domain.usecase.GetRecipesByIngredientsUseCase
 import com.caioluis.receitas.domain.usecase.GetRecipesByIngredientsUseCaseImpl
+import com.caioluis.receitas.domain.usecase.RemoveIngredientUseCase
 import com.caioluis.receitas.presentation.structure.RecipesInteractor
 import com.caioluis.receitas.presentation.structure.RecipesInteractorImpl
 import com.caioluis.receitas.presentation.structure.RecipesPresenter
@@ -30,6 +31,10 @@ object RecipesModule {
     @[Provides JvmStatic]
     fun provideAddIngredientsOnListUseCase(): AddIngredientsOnListUseCase =
         AddIngredientsToListUseCaseImpl()
+
+    @[Provides JvmStatic]
+    fun provideRemoveIngredientUseCase(): RemoveIngredientUseCase =
+        RemoveIngredientUseCase.Impl()
 
     @[Provides JvmStatic]
     fun provideGetRecipesByIngredientsUseCase(
@@ -66,8 +71,9 @@ object RecipesModule {
 
     @[Provides JvmStatic]
     fun provideRecipesReducer(
-        addIngredientsOnListUseCase: AddIngredientsOnListUseCase
-    ): RecipesReducer = RecipesReducerImpl(addIngredientsOnListUseCase)
+        addIngredientsOnListUseCase: AddIngredientsOnListUseCase,
+        removeIngredientUseCase: RemoveIngredientUseCase
+    ): RecipesReducer = RecipesReducerImpl(addIngredientsOnListUseCase, removeIngredientUseCase)
 
     @[Provides JvmStatic]
     fun provideRecipesInteractor(

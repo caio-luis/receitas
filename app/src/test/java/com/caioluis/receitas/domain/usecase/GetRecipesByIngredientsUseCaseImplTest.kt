@@ -2,6 +2,7 @@ package com.caioluis.receitas.domain.usecase
 
 import com.caioluis.receitas.Fixtures
 import com.caioluis.receitas.data.RecipesDataSource
+import com.caioluis.receitas.presentation.mapper.toViewModel
 import com.caioluis.receitas.presentation.structure.RecipesEffect
 import com.caioluis.receitas.toDomain
 import com.caioluis.receitas.util.TrampolineSchedulerProvider
@@ -55,7 +56,7 @@ class GetRecipesByIngredientsUseCaseImplTest {
 
         response
             .test()
-            .assertResult(RecipesEffect.Loading, RecipesEffect.ShowRecipes(recipesMock))
+            .assertResult(RecipesEffect.Loading, RecipesEffect.ShowRecipes(recipesMock.map { it.toViewModel() }))
             .assertComplete()
             .assertNoErrors()
     }

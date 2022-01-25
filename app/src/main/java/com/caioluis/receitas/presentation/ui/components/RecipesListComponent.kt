@@ -12,7 +12,10 @@ import com.caioluis.receitas.presentation.model.RecipeViewModel
 
 @ExperimentalMaterialApi
 @Composable
-fun RecipesList(recipes: List<RecipeViewModel>, itemClick: (RecipeViewModel) -> Unit) {
+fun RecipesList(
+    recipes: List<RecipeViewModel> = listOf(),
+    itemClick: (RecipeViewModel) -> Unit
+) {
     LazyColumn(
         modifier = Modifier.fillMaxWidth(),
         contentPadding = PaddingValues(5.dp),

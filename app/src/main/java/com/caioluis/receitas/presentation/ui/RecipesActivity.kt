@@ -9,19 +9,24 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.caioluis.receitas.R
+import com.caioluis.receitas.presentation.model.RecipeViewModel
 import com.caioluis.receitas.presentation.structure.RecipesPresenter
 import com.caioluis.receitas.presentation.ui.components.BasicActivityLayout
 import com.caioluis.receitas.presentation.ui.components.BasicAppBar
+import com.caioluis.receitas.presentation.ui.components.ChipGroup
 import com.caioluis.receitas.presentation.ui.components.RecipesList
 import com.caioluis.receitas.presentation.ui.components.SearchBoxComponent
-import com.caioluis.receitas.util.fakeRecipes
 import dagger.android.AndroidInjection
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.plusAssign
 import javax.inject.Inject
 
 @ExperimentalMaterialApi
@@ -30,10 +35,33 @@ class RecipesActivity : ComponentActivity() {
     @Inject
     lateinit var recipesPresenter: RecipesPresenter
 
+    private val recipesObservable = mutableStateListOf<RecipeViewModel>()
+    private val ingredientsToSearchObservable = mutableStateListOf<String>()
+    private val disposable = CompositeDisposable()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContent { RecipesActivityLayout() }
+        renderState()
+    }
+
+    private fun renderState() {
+        disposable += recipesPresenter.stateSubject.subscribe {
+            when {
+                it.error != null -> it.error.message?.let { error -> showToast(error) }
+
+                it.recipes != recipesObservable -> {
+                    recipesObservable.clear()
+                    recipesObservable.addAll(it.recipes)
+                }
+
+                it.ingredientsToSearch != ingredientsToSearchObservable -> {
+                    ingredientsToSearchObservable.clear()
+                    ingredientsToSearchObservable.addAll(it.ingredientsToSearch)
+                }
+            }
+        }
     }
 
     @Preview
@@ -53,12 +81,16 @@ class RecipesActivity : ComponentActivity() {
                     clearTextAfterSearch = true,
                     hint = "Coloque nome do ingrediente",
                     buttonAction = {
-//                        dispatchUiEvent(RecipeUiEvent.IngredientAdded(it))
+                        dispatchUiEvent(RecipeUiEvent.IngredientAdded(it))
                     }
                 )
 
+                val ingredients = remember { ingredientsToSearchObservable }
+                ChipGroup(ingredients = ingredients)
+
+                val list = remember { recipesObservable }
                 RecipesList(
-                    recipes = fakeRecipes,
+                    recipes = list,
                     itemClick = { showToast(it.recipeName) }
                 )
             }
@@ -76,6 +108,7 @@ class RecipesActivity : ComponentActivity() {
 
     override fun onDestroy() {
         recipesPresenter.clear()
+        if (disposable.isDisposed) disposable.dispose()
         super.onDestroy()
     }
 }

@@ -12,6 +12,8 @@ class RecipesInteractorImpl(
             is RecipesCommand.AddIngredient ->
                 Observable.just(RecipesEffect.AddIngredient(command.ingredient))
 
+            is RecipesCommand.RemoveIngredient ->
+                Observable.just(RecipesEffect.RemoveIngredient(command.ingredient))
             is RecipesCommand.SearchRecipes -> getRecipesByIngredientsUseCase(command.ingredients)
         }
     }

@@ -1,18 +1,31 @@
 package com.caioluis.receitas.presentation.structure
 
 import com.caioluis.receitas.Fixtures
+import com.caioluis.receitas.domain.usecase.AddIngredientsOnListUseCase
 import com.caioluis.receitas.domain.usecase.AddIngredientsToListUseCaseImpl
+import com.caioluis.receitas.domain.usecase.RemoveIngredientUseCase
+import com.caioluis.receitas.presentation.mapper.toViewModel
 import com.caioluis.receitas.toDomain
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
+import org.mockito.Mock
+import org.mockito.Mockito.mock
 
 @RunWith(Parameterized::class)
 class RecipesReducerTest(private val parameter: Parameter) {
 
     private lateinit var recipesReducer: RecipesReducerImpl
+
+    @Mock
+    private var addIngredientsOnListUseCase: AddIngredientsOnListUseCase =
+        mock(AddIngredientsOnListUseCase::class.java)
+
+    @Mock
+    private var removeIngredientUseCase: RemoveIngredientUseCase =
+        mock(RemoveIngredientUseCase::class.java)
 
     companion object {
         @JvmStatic
@@ -42,6 +55,15 @@ class RecipesReducerTest(private val parameter: Parameter) {
                     )
                 ),
                 Parameter(
+                    effect = RecipesEffect.RemoveIngredient(ingredient = "teste"),
+                    finalState = RecipesState(
+                        loading = false,
+                        recipes = listOf(),
+                        ingredientsToSearch = mutableListOf(),
+                        error = null
+                    )
+                ),
+                Parameter(
                     effect = RecipesEffect.Loading,
                     finalState = RecipesState(
                         loading = true,
@@ -63,7 +85,7 @@ class RecipesReducerTest(private val parameter: Parameter) {
                     effect = RecipesEffect.ShowRecipes(listOf()),
                     initialState = RecipesState(
                         loading = false,
-                        recipes = recipesMock,
+                        recipes = recipesMock.map { it.toViewModel() },
                         ingredientsToSearch = mutableListOf(),
                         error = null
                     ),
@@ -88,7 +110,7 @@ class RecipesReducerTest(private val parameter: Parameter) {
 
     @Before
     fun setup() {
-        recipesReducer = RecipesReducerImpl(AddIngredientsToListUseCaseImpl())
+        recipesReducer = RecipesReducerImpl(addIngredientsOnListUseCase, removeIngredientUseCase)
     }
 
     @Test
