@@ -12,15 +12,15 @@ class RecipesReducerImpl(
             is RecipesEffect.ShowRecipes -> state.copy(
                 loading = false,
                 recipes = effect.recipes,
-                ingredientsToSearch = state.ingredientsToSearch,
+                ingredients = state.ingredients,
                 error = null
             )
 
             is RecipesEffect.AddIngredient -> state.copy(
                 loading = false,
                 recipes = state.recipes,
-                ingredientsToSearch = addIngredientsOnListUseCase(
-                    state.ingredientsToSearch,
+                ingredients = addIngredientsOnListUseCase(
+                    state.ingredients,
                     effect.ingredient
                 ),
                 error = null
@@ -28,21 +28,21 @@ class RecipesReducerImpl(
             is RecipesEffect.Error -> state.copy(
                 loading = false,
                 recipes = state.recipes,
-                ingredientsToSearch = state.ingredientsToSearch,
+                ingredients = state.ingredients,
                 error = effect.exception
             )
 
             RecipesEffect.Loading -> state.copy(
                 loading = true,
                 recipes = state.recipes,
-                ingredientsToSearch = state.ingredientsToSearch,
+                ingredients = state.ingredients,
                 error = null
             )
             is RecipesEffect.RemoveIngredient -> state.copy(
                 loading = false,
                 recipes = state.recipes,
-                ingredientsToSearch = removeIngredientUseCase(
-                    state.ingredientsToSearch,
+                ingredients = removeIngredientUseCase(
+                    state.ingredients,
                     effect.ingredient
                 ),
                 error = null

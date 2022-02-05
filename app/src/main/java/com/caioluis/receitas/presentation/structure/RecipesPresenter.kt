@@ -2,6 +2,7 @@ package com.caioluis.receitas.presentation.structure
 
 import com.caioluis.receitas.presentation.ui.RecipeUiEvent
 import com.caioluis.receitas.presentation.ui.RecipesUiEventTransformer
+import com.caioluis.receitas.util.BaseSchedulerProvider
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
@@ -10,6 +11,7 @@ class RecipesPresenter(
     private val recipesInteractor: RecipesInteractor,
     private val recipesReducer: RecipesReducer,
     private val initialState: RecipesState = RecipesState(),
+    schedulerProvider: BaseSchedulerProvider
 ) {
     private val commandSubject = PublishSubject.create<RecipesCommand>()
     val stateSubject = BehaviorSubject.createDefault(initialState)
@@ -29,7 +31,10 @@ class RecipesPresenter(
                     state = stateSubject.value ?: initialState,
                     effect = effect
                 )
-            }.subscribe(stateSubject::onNext)
+            }
+            .subscribeOn(schedulerProvider.ui())
+            .observeOn(schedulerProvider.ui())
+            .subscribe(stateSubject::onNext)
     }
 
     fun dispatchCommand(recipesEvent: RecipeUiEvent) {

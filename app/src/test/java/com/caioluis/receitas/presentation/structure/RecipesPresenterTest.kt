@@ -3,6 +3,7 @@ package com.caioluis.receitas.presentation.structure
 import com.caioluis.receitas.data.RecipesDataSource
 import com.caioluis.receitas.domain.usecase.GetRecipesByIngredientsUseCase
 import com.caioluis.receitas.presentation.ui.RecipeUiEvent
+import com.caioluis.receitas.util.TrampolineSchedulerProvider
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -15,6 +16,7 @@ class RecipesPresenterTest {
     @Mock private lateinit var interactor: RecipesInteractor
     @Mock private lateinit var reducer: RecipesReducer
 
+    private lateinit var schedulerProvider: TrampolineSchedulerProvider
     private lateinit var presenter: RecipesPresenter
 
     @Before
@@ -23,7 +25,12 @@ class RecipesPresenterTest {
         getRecipesByIngredientsUseCase = mock(GetRecipesByIngredientsUseCase::class.java)
         interactor = mock(RecipesInteractor::class.java)
         reducer = mock(RecipesReducer::class.java)
-        presenter = RecipesPresenter(interactor, reducer)
+        schedulerProvider = TrampolineSchedulerProvider()
+        presenter = RecipesPresenter(
+            recipesInteractor = interactor,
+            recipesReducer = reducer,
+            schedulerProvider = schedulerProvider
+        )
     }
 
     @Test

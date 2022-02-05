@@ -1,8 +1,27 @@
 package com.caioluis.receitas.domain.usecase
 
-interface AddIngredientsOnListUseCase {
+import com.caioluis.receitas.presentation.structure.IngredientsToSearch
+
+interface AddIngredientsOnListUseCase : IngredientToSearchLimiter {
     operator fun invoke(
-        ingredients: MutableList<String>,
+        ingredients: IngredientsToSearch,
         ingredient: String
-    ): MutableList<String>
+    ): IngredientsToSearch
+
+    class Impl : AddIngredientsOnListUseCase {
+        override fun invoke(
+            ingredients: IngredientsToSearch,
+            ingredient: String
+        ): IngredientsToSearch {
+            return ingredients.apply {
+                limitReached = when (ingredientsToSearch.size) {
+                    in 0 until sizeLimit -> {
+                        ingredientsToSearch.add(ingredient)
+                        false
+                    }
+                    else -> true
+                }
+            }
+        }
+    }
 }

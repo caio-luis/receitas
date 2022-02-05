@@ -7,9 +7,7 @@ import com.caioluis.receitas.data.local.database.RecipesDataBase
 import com.caioluis.receitas.data.local.mapper.IngredientsSearchSqlQueryMapper
 import com.caioluis.receitas.data.local.mapper.RecipesLocalMapper
 import com.caioluis.receitas.domain.usecase.AddIngredientsOnListUseCase
-import com.caioluis.receitas.domain.usecase.AddIngredientsToListUseCaseImpl
 import com.caioluis.receitas.domain.usecase.GetRecipesByIngredientsUseCase
-import com.caioluis.receitas.domain.usecase.GetRecipesByIngredientsUseCaseImpl
 import com.caioluis.receitas.domain.usecase.RemoveIngredientUseCase
 import com.caioluis.receitas.presentation.structure.RecipesInteractor
 import com.caioluis.receitas.presentation.structure.RecipesInteractorImpl
@@ -30,7 +28,7 @@ object RecipesModule {
     // Use Cases
     @[Provides JvmStatic]
     fun provideAddIngredientsOnListUseCase(): AddIngredientsOnListUseCase =
-        AddIngredientsToListUseCaseImpl()
+        AddIngredientsOnListUseCase.Impl()
 
     @[Provides JvmStatic]
     fun provideRemoveIngredientUseCase(): RemoveIngredientUseCase =
@@ -40,7 +38,7 @@ object RecipesModule {
     fun provideGetRecipesByIngredientsUseCase(
         dataSource: RecipesDataSource,
         scheduler: BaseSchedulerProvider
-    ): GetRecipesByIngredientsUseCase = GetRecipesByIngredientsUseCaseImpl(dataSource, scheduler)
+    ): GetRecipesByIngredientsUseCase = GetRecipesByIngredientsUseCase.Impl(dataSource, scheduler)
 
     // Mappers
     @[Provides JvmStatic]
@@ -66,8 +64,13 @@ object RecipesModule {
     @[Provides JvmStatic]
     fun provideRecipesPresenter(
         recipesInteractor: RecipesInteractor,
-        recipesReducer: RecipesReducer
-    ): RecipesPresenter = RecipesPresenter(recipesInteractor, recipesReducer)
+        recipesReducer: RecipesReducer,
+        scheduler: BaseSchedulerProvider
+    ): RecipesPresenter = RecipesPresenter(
+        recipesInteractor = recipesInteractor,
+        recipesReducer = recipesReducer,
+        schedulerProvider = scheduler
+    )
 
     @[Provides JvmStatic]
     fun provideRecipesReducer(

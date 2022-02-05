@@ -9,14 +9,12 @@ import com.caioluis.receitas.util.TrampolineSchedulerProvider
 import io.reactivex.Observable
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.anyList
 import org.mockito.Mockito.mock
-import org.mockito.junit.MockitoJUnitRunner
 import org.mockito.Mockito.`when` as whenever
 
-class GetRecipesByIngredientsUseCaseImplTest {
+class GetRecipesByIngredientsUseCaseTest {
 
     private lateinit var getRecipesByIngredientsUseCase: GetRecipesByIngredientsUseCase
     private lateinit var scheduler: TrampolineSchedulerProvider
@@ -29,7 +27,7 @@ class GetRecipesByIngredientsUseCaseImplTest {
         recipesDataSourceMock = mock(RecipesDataSource::class.java)
         scheduler = TrampolineSchedulerProvider()
         getRecipesByIngredientsUseCase =
-            GetRecipesByIngredientsUseCaseImpl(recipesDataSourceMock, scheduler)
+            GetRecipesByIngredientsUseCase.Impl(recipesDataSourceMock, scheduler)
     }
 
     @Test
@@ -56,7 +54,10 @@ class GetRecipesByIngredientsUseCaseImplTest {
 
         response
             .test()
-            .assertResult(RecipesEffect.Loading, RecipesEffect.ShowRecipes(recipesMock.map { it.toViewModel() }))
+            .assertResult(
+                RecipesEffect.Loading,
+                RecipesEffect.ShowRecipes(recipesMock.map { it.toViewModel() })
+            )
             .assertComplete()
             .assertNoErrors()
     }

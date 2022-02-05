@@ -1,6 +1,5 @@
 package com.caioluis.receitas.domain.usecase
 
-import com.caioluis.receitas.domain.usecase.GetRecipesByIngredientsUseCase
 import com.caioluis.receitas.presentation.structure.RecipesEffect
 import io.reactivex.Observable
 

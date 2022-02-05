@@ -32,7 +32,7 @@ class RecipesInteractorTest {
         val interactor = RecipesInteractorImpl(getRecipesByIngredientsUseCaseTest)
 
         val response = interactor.invoke(
-            RecipesState(false, listOf(), mutableListOf()),
+            RecipesState(),
             RecipesCommand.SearchRecipes(listOf())
         )
 
@@ -45,7 +45,7 @@ class RecipesInteractorTest {
         val interactor = RecipesInteractorImpl(getRecipesByIngredientsUseCaseTest)
 
         val response = interactor.invoke(
-            RecipesState(false, listOf(), mutableListOf()),
+            RecipesState(),
             RecipesCommand.AddIngredient("")
         )
 
@@ -65,7 +65,7 @@ class RecipesInteractorTest {
             )
 
         val response = interactor.invoke(
-            RecipesState(false, listOf(), mutableListOf()),
+            RecipesState(),
             RecipesCommand.SearchRecipes(listOf())
         )
 

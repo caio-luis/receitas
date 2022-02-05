@@ -1,17 +1,14 @@
 package com.caioluis.receitas.presentation.structure
 
-import com.caioluis.receitas.Fixtures
 import com.caioluis.receitas.domain.usecase.AddIngredientsOnListUseCase
-import com.caioluis.receitas.domain.usecase.AddIngredientsToListUseCaseImpl
 import com.caioluis.receitas.domain.usecase.RemoveIngredientUseCase
-import com.caioluis.receitas.presentation.mapper.toViewModel
-import com.caioluis.receitas.toDomain
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 import org.mockito.Mock
+import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 
 @RunWith(Parameterized::class)
@@ -32,70 +29,13 @@ class RecipesReducerTest(private val parameter: Parameter) {
         @Parameterized.Parameters(name = "{0}")
         fun parameters(): List<Parameter> {
 
-            val errorMock = Throwable("test error")
-            val recipesMock = Fixtures.getRecipesMockFromJsonResource().map { it.toDomain() }
-
             return listOf(
-                Parameter(
-                    effect = RecipesEffect.ShowRecipes(recipes = listOf()),
-                    finalState = RecipesState(
-                        loading = false,
-                        recipes = listOf(),
-                        ingredientsToSearch = mutableListOf(),
-                        error = null
-                    )
-                ),
-                Parameter(
-                    effect = RecipesEffect.AddIngredient(ingredient = "teste"),
-                    finalState = RecipesState(
-                        loading = false,
-                        recipes = listOf(),
-                        ingredientsToSearch = mutableListOf("teste"),
-                        error = null
-                    )
-                ),
-                Parameter(
-                    effect = RecipesEffect.RemoveIngredient(ingredient = "teste"),
-                    finalState = RecipesState(
-                        loading = false,
-                        recipes = listOf(),
-                        ingredientsToSearch = mutableListOf(),
-                        error = null
-                    )
-                ),
-                Parameter(
-                    effect = RecipesEffect.Loading,
-                    finalState = RecipesState(
-                        loading = true,
-                        recipes = listOf(),
-                        ingredientsToSearch = mutableListOf(),
-                        error = null
-                    )
-                ),
-                Parameter(
-                    effect = RecipesEffect.Error(errorMock),
-                    finalState = RecipesState(
-                        loading = false,
-                        recipes = listOf(),
-                        ingredientsToSearch = mutableListOf(),
-                        error = errorMock
-                    )
-                ),
-                Parameter(
-                    effect = RecipesEffect.ShowRecipes(listOf()),
-                    initialState = RecipesState(
-                        loading = false,
-                        recipes = recipesMock.map { it.toViewModel() },
-                        ingredientsToSearch = mutableListOf(),
-                        error = null
-                    ),
-                    finalState = RecipesState(
-                        loading = false,
-                        recipes = listOf(),
-                        ingredientsToSearch = mutableListOf(),
-                        error = null
-                    )
-                ),
+                RecipesReducerParameters.showRecipesCase,
+                RecipesReducerParameters.showRecipesWithEmptyResultCase,
+                RecipesReducerParameters.addOneIngredientCase,
+                RecipesReducerParameters.removeOneIngredientFromListCase,
+                RecipesReducerParameters.errorCase,
+                RecipesReducerParameters.loadingRecipesCase
             )
         }
     }
@@ -111,16 +51,28 @@ class RecipesReducerTest(private val parameter: Parameter) {
     @Before
     fun setup() {
         recipesReducer = RecipesReducerImpl(addIngredientsOnListUseCase, removeIngredientUseCase)
+
+        `when`(
+            addIngredientsOnListUseCase.invoke(
+                ingredients = IngredientsToSearch(), ingredient = "teste"
+            )
+        ).thenReturn(IngredientsToSearch(mutableListOf("teste")))
+
+        `when`(
+            removeIngredientUseCase.invoke(
+                ingredients = IngredientsToSearch(), ingredient = "teste"
+            )
+        ).thenReturn(IngredientsToSearch())
     }
 
     @Test
     fun `when effect is `() {
         assertEquals(
+            parameter.finalState,
             recipesReducer.invoke(
                 state = RecipesState(),
                 effect = parameter.effect
-            ),
-            parameter.finalState
+            )
         )
     }
 }

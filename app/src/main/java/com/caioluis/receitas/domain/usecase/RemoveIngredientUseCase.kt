@@ -1,17 +1,24 @@
 package com.caioluis.receitas.domain.usecase
 
-interface RemoveIngredientUseCase {
+import com.caioluis.receitas.presentation.structure.IngredientsToSearch
+
+interface RemoveIngredientUseCase : IngredientToSearchLimiter {
     operator fun invoke(
-        ingredients: MutableList<String>,
+        ingredients: IngredientsToSearch,
         ingredient: String
-    ): MutableList<String>
+    ): IngredientsToSearch
 
     class Impl : RemoveIngredientUseCase {
         override fun invoke(
-            ingredients: MutableList<String>,
+            ingredients: IngredientsToSearch,
             ingredient: String
-        ): MutableList<String> {
-            return ingredients.apply { remove(ingredient) }
+        ): IngredientsToSearch {
+            return ingredients.apply {
+                if (ingredientsToSearch.size in 1..sizeLimit) {
+                    ingredientsToSearch.remove(ingredient)
+                    limitReached = false
+                }
+            }
         }
     }
 }

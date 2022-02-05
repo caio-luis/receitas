@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.compose.material.ExperimentalMaterialApi
 import com.caioluis.receitas.RecipesApplication
 import com.caioluis.receitas.presentation.ui.RecipesActivity
+import com.caioluis.receitas.presentation.ui.RecipesComposeActivity
 import dagger.Binds
 import dagger.Module
 import dagger.android.AndroidInjectionModule
@@ -16,5 +17,8 @@ abstract class AppModule {
     abstract fun context(app: RecipesApplication): Context
 
     @[ExperimentalMaterialApi ContributesAndroidInjector]
-    abstract fun injectActivity(): RecipesActivity
+    abstract fun injectRecipesComposeActivity(): RecipesComposeActivity
+
+    @[ExperimentalMaterialApi ContributesAndroidInjector]
+    abstract fun injectRecipesActivity(): RecipesActivity
 }
