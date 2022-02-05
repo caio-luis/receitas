@@ -13,10 +13,11 @@ class RecipesPresenter(
     private val initialState: RecipesState = RecipesState(),
     schedulerProvider: BaseSchedulerProvider
 ) {
-    private val commandSubject = PublishSubject.create<RecipesCommand>()
-    val stateSubject = BehaviorSubject.createDefault(initialState)
-    private val disposables: MutableList<Disposable> = mutableListOf()
     private val uiEventTransformer: RecipesUiEventTransformer = RecipesUiEventTransformer()
+    private val commandSubject = PublishSubject.create<RecipesCommand>()
+    private val disposables: MutableList<Disposable> = mutableListOf()
+
+    val stateSubject = BehaviorSubject.createDefault(initialState)
 
     init {
         disposables += commandSubject
@@ -31,8 +32,7 @@ class RecipesPresenter(
                     state = stateSubject.value ?: initialState,
                     effect = effect
                 )
-            }
-            .subscribeOn(schedulerProvider.ui())
+            }.subscribeOn(schedulerProvider.ui())
             .observeOn(schedulerProvider.ui())
             .subscribe(stateSubject::onNext)
     }

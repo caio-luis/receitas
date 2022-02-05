@@ -11,10 +11,9 @@ import com.caioluis.receitas.presentation.RecipesAdapter
 import com.caioluis.receitas.presentation.model.RecipeViewModel
 import com.caioluis.receitas.presentation.structure.RecipesPresenter
 import com.caioluis.receitas.presentation.structure.RecipesState
+import com.caioluis.receitas.presentation.viewcomponent.IngredientsChipGroup
 import com.caioluis.receitas.util.hide
 import com.caioluis.receitas.util.show
-import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import dagger.android.AndroidInjection
@@ -34,7 +33,7 @@ class RecipesActivity : AppCompatActivity(R.layout.activity_recipes) {
     private val recipesRecyclerView: RecyclerView by lazy { findViewById(R.id.recipes_list) }
     private val searchTextInputLayout: TextInputLayout by lazy { findViewById(R.id.search_ingredient_layout) }
     private val searchTextInput: TextInputEditText by lazy { findViewById(R.id.search_ingredient_edit_text) }
-    private val ingredientsChipGroup: ChipGroup by lazy { findViewById(R.id.ingredients_chip_group) }
+    private val ingredientsChipGroup: IngredientsChipGroup by lazy { findViewById(R.id.ingredients_chip_group) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -53,6 +52,10 @@ class RecipesActivity : AppCompatActivity(R.layout.activity_recipes) {
                 }
             }
         }
+
+        disposable += ingredientsChipGroup.closeIconClickOutput.subscribe {
+            dispatchUiEvent(RecipeUiEvent.IngredientRemoved(it))
+        }
     }
 
     private fun observeState() {
@@ -64,25 +67,14 @@ class RecipesActivity : AppCompatActivity(R.layout.activity_recipes) {
 
             when {
                 state.error != null -> state.error.message?.let { error -> showToast(error) }
-                state.ingredients.limitReached -> showToast("Limite de ingredientes alcançado.")
+                state.ingredients.limitReached -> showToast(getString(R.string.ingredients_limit_reached))
             }
         }
     }
 
     private fun setIngredientsList(state: RecipesState) {
         ingredientsChipGroup.show()
-
-        state.ingredients.ingredientsToSearch.map {
-            val chip = Chip(this).apply {
-                text = it
-                isCloseIconVisible = true
-                setOnCloseIconClickListener {
-                    ingredientsChipGroup.removeView(it)
-                    dispatchUiEvent(RecipeUiEvent.IngredientRemoved(this.text.toString()))
-                }
-            }
-            ingredientsChipGroup.addView(chip)
-        }
+        ingredientsChipGroup.renderChips(state.ingredients.ingredientsToSearch)
     }
 
     @SuppressLint("NotifyDataSetChanged")
