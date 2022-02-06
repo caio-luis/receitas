@@ -21,7 +21,7 @@ interface GetRecipesByIngredientsUseCase {
 
         private fun getRecipesEffect(observable: Observable<List<DomainRecipe>>): Observable<RecipesEffect> {
             return observable
-                .subscribeOn(scheduler.ui())
+                .subscribeOn(scheduler.io())
                 .observeOn(scheduler.ui())
                 .map(::handleResult)
                 .startWith(RecipesEffect.Loading)

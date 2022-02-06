@@ -12,10 +12,9 @@ import com.caioluis.receitas.presentation.model.RecipeViewModel
 import com.caioluis.receitas.presentation.structure.RecipesPresenter
 import com.caioluis.receitas.presentation.structure.RecipesState
 import com.caioluis.receitas.presentation.viewcomponent.IngredientsChipGroup
+import com.caioluis.receitas.presentation.viewcomponent.SearchAddInputTextComponent
 import com.caioluis.receitas.util.hide
 import com.caioluis.receitas.util.show
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import dagger.android.AndroidInjection
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
@@ -29,10 +28,11 @@ class RecipesActivity : AppCompatActivity(R.layout.activity_recipes) {
     private val disposable = CompositeDisposable()
     private val recipesAdapter = RecipesAdapter()
 
+    private var recipesState = RecipesState()
+
     private val loadingView: LinearLayout by lazy { findViewById(R.id.loading_screen) }
     private val recipesRecyclerView: RecyclerView by lazy { findViewById(R.id.recipes_list) }
-    private val searchTextInputLayout: TextInputLayout by lazy { findViewById(R.id.search_ingredient_layout) }
-    private val searchTextInput: TextInputEditText by lazy { findViewById(R.id.search_ingredient_edit_text) }
+    private val searchAddTextInput: SearchAddInputTextComponent by lazy { findViewById(R.id.search_ingredient_layout) }
     private val ingredientsChipGroup: IngredientsChipGroup by lazy { findViewById(R.id.ingredients_chip_group) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,21 +40,22 @@ class RecipesActivity : AppCompatActivity(R.layout.activity_recipes) {
         super.onCreate(savedInstanceState)
         observeState()
         setList()
-        setListeners()
+        subscribeClickEvents()
     }
 
-    private fun setListeners() {
-        searchTextInputLayout.setEndIconOnClickListener {
-            searchTextInput.text?.let {
-                if (it.isNotBlank()) {
-                    dispatchUiEvent(RecipeUiEvent.IngredientAdded(it.toString()))
-                    it.clear()
-                }
-            }
-        }
-
+    private fun subscribeClickEvents() {
         disposable += ingredientsChipGroup.closeIconClickOutput.subscribe {
             dispatchUiEvent(RecipeUiEvent.IngredientRemoved(it))
+        }
+
+        disposable += searchAddTextInput.addButtonOutput.subscribe {
+            dispatchUiEvent(RecipeUiEvent.IngredientAdded(it.toString()))
+        }
+
+        disposable += searchAddTextInput.searchButtonOutput.subscribe {
+            if (recipesState.ingredients.ingredientsToSearch.isNotEmpty()) {
+                dispatchUiEvent(RecipeUiEvent.Search(recipesState.ingredients.ingredientsToSearch))
+            }
         }
     }
 
@@ -69,6 +70,7 @@ class RecipesActivity : AppCompatActivity(R.layout.activity_recipes) {
                 state.error != null -> state.error.message?.let { error -> showToast(error) }
                 state.ingredients.limitReached -> showToast(getString(R.string.ingredients_limit_reached))
             }
+            recipesState = state
         }
     }
 
@@ -79,15 +81,9 @@ class RecipesActivity : AppCompatActivity(R.layout.activity_recipes) {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun setRecipesList(recipes: List<RecipeViewModel>) {
-        when {
-            recipes.isNotEmpty() -> {
-                recipesAdapter.submitList(recipes)
-                recipesAdapter.notifyDataSetChanged()
-            }
-            else -> {
-                recipesAdapter.submitList(listOf())
-                recipesAdapter.notifyDataSetChanged()
-            }
+        if (recipesAdapter.currentList != recipes) {
+            recipesAdapter.submitList(recipes)
+            recipesAdapter.notifyDataSetChanged()
         }
     }
 
@@ -107,8 +103,7 @@ class RecipesActivity : AppCompatActivity(R.layout.activity_recipes) {
     }
 
     private fun showToast(text: String) {
-        Toast.makeText(this@RecipesActivity, text, Toast.LENGTH_SHORT)
-            .show()
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroy() {

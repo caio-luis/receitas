@@ -6,36 +6,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.google.android.material.textfield.TextInputLayout
+    <com.caioluis.receitas.presentation.viewcomponent.SearchAddInputTextComponent
         android:id="@+id/search_ingredient_layout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:nextFocusRight="@null"
-        android:padding="8dp"
-        app:endIconDrawable="@drawable/ic_baseline_add_24"
-        app:endIconMode="custom"
-        app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/search_ingredient_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/insert_ingredient_hint"
-            android:inputType="text"
-            android:maxLines="1" />
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.caioluis.receitas.presentation.viewcomponent.IngredientsChipGroup
         android:id="@+id/ingredients_chip_group"
         android:layout_width="match_parent"
-        app:itemSpacing="4dp"
+        android:layout_height="wrap_content"
         android:padding="8dp"
         android:visibility="visible"
-        android:layout_height="wrap_content"
+        app:itemSpacing="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search_ingredient_layout" />
