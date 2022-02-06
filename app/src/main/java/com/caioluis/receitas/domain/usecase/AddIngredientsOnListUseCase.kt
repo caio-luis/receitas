@@ -14,12 +14,14 @@ interface AddIngredientsOnListUseCase : IngredientToSearchLimiter {
             ingredient: String
         ): IngredientsToSearch {
             return ingredients.apply {
-                limitReached = when (ingredientsToSearch.size) {
-                    in 0 until sizeLimit -> {
-                        ingredientsToSearch.add(ingredient)
-                        false
+                if (ingredientsToSearch.contains(ingredient).not()) {
+                    limitReached = when (ingredientsToSearch.size) {
+                        in 0 until sizeLimit -> {
+                            ingredientsToSearch.add(ingredient)
+                            ingredientsToSearch.size == sizeLimit
+                        }
+                        else -> true
                     }
-                    else -> true
                 }
             }
         }
