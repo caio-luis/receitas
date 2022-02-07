@@ -3,7 +3,6 @@ package com.caioluis.receitas.presentation.ui
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.caioluis.receitas.R
@@ -15,6 +14,7 @@ import com.caioluis.receitas.presentation.viewcomponent.IngredientsChipGroup
 import com.caioluis.receitas.presentation.viewcomponent.SearchAddInputTextComponent
 import com.caioluis.receitas.util.hide
 import com.caioluis.receitas.util.show
+import com.caioluis.receitas.util.showToast
 import dagger.android.AndroidInjection
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
@@ -39,7 +39,7 @@ class RecipesActivity : AppCompatActivity(R.layout.activity_recipes) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         observeState()
-        setList()
+        setAdapter()
         subscribeClickEvents()
     }
 
@@ -94,16 +94,12 @@ class RecipesActivity : AppCompatActivity(R.layout.activity_recipes) {
         }
     }
 
-    private fun setList() {
+    private fun setAdapter() {
         recipesRecyclerView.adapter = recipesAdapter
     }
 
     private fun dispatchUiEvent(event: RecipeUiEvent) {
         recipesPresenter.dispatchCommand(event)
-    }
-
-    private fun showToast(text: String) {
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroy() {

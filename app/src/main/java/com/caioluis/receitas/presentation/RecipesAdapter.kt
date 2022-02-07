@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.caioluis.receitas.R
 import com.caioluis.receitas.presentation.model.RecipeViewModel
 
 class RecipesAdapter :
@@ -14,7 +15,7 @@ class RecipesAdapter :
 
     inner class RecipesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(recipe: RecipeViewModel) {
-            val title = itemView.findViewById<TextView>(android.R.id.text1)
+            val title = itemView.findViewById<TextView>(R.id.recipe_title)
             title.text = recipe.recipeName
         }
     }
@@ -22,7 +23,7 @@ class RecipesAdapter :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipesViewHolder {
         val view =
             LayoutInflater.from(parent.context)
-                .inflate(android.R.layout.simple_list_item_1, parent, false)
+                .inflate(R.layout.recipe_list_item, parent, false)
         return RecipesViewHolder(view)
     }
 
