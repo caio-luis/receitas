@@ -1,2 +1,3 @@
 # receitas
-App de receitas para estudos
+App de receitas para estudos 
+ - MVI 
