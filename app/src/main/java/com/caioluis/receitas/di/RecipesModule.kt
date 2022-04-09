@@ -16,6 +16,7 @@ import com.caioluis.receitas.presentation.structure.RecipesPresenter
 import com.caioluis.receitas.presentation.structure.RecipesReducerImpl
 import com.caioluis.receitas.usecase.AddIngredientsOnListUseCaseImpl
 import com.caioluis.receitas.usecase.GetRecipesByIngredientsUseCaseImpl
+import com.caioluis.receitas.usecase.RemoveIngredientUseCaseImpl
 import com.caioluis.receitas.util.BaseSchedulerProvider
 import com.caioluis.receitas.util.SchedulerProvider
 import dagger.Module
@@ -34,7 +35,7 @@ object RecipesModule {
 
     @[Provides JvmStatic]
     fun provideRemoveIngredientUseCase(): RemoveIngredientUseCase =
-        RemoveIngredientUseCase.Impl()
+        RemoveIngredientUseCaseImpl()
 
     @[Provides JvmStatic]
     fun provideGetRecipesByIngredientsUseCase(
