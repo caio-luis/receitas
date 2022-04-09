@@ -7,18 +7,4 @@ interface RemoveIngredientUseCase : IngredientToSearchLimiter {
         ingredients: IngredientsToSearch,
         ingredient: String
     ): IngredientsToSearch
-
-    class Impl : RemoveIngredientUseCase {
-        override fun invoke(
-            ingredients: IngredientsToSearch,
-            ingredient: String
-        ): IngredientsToSearch {
-            return ingredients.apply {
-                if (ingredientsToSearch.size in 1..sizeLimit) {
-                    ingredientsToSearch.remove(ingredient)
-                    limitReached = false
-                }
-            }
-        }
-    }
 }

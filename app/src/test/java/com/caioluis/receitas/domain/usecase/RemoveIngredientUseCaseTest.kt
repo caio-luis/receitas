@@ -1,12 +1,13 @@
 package com.caioluis.receitas.domain.usecase
 
 import com.caioluis.receitas.domain.model.IngredientsToSearch
+import com.caioluis.receitas.usecase.RemoveIngredientUseCaseImpl
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class RemoveIngredientUseCaseTest {
     private val removeIngredientUseCase: RemoveIngredientUseCase
-        get() = RemoveIngredientUseCase.Impl()
+        get() = RemoveIngredientUseCaseImpl()
 
     @Test
     fun `assert that do nothing when try to remove an ingredient from empty list`() {
