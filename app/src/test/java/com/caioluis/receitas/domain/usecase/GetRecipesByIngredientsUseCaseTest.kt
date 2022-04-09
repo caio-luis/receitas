@@ -5,6 +5,7 @@ import com.caioluis.receitas.data.RecipesDataSource
 import com.caioluis.receitas.presentation.mapper.toViewModel
 import com.caioluis.receitas.presentation.structure.RecipesEffect
 import com.caioluis.receitas.toDomain
+import com.caioluis.receitas.usecase.GetRecipesByIngredientsUseCaseImpl
 import com.caioluis.receitas.util.TrampolineSchedulerProvider
 import io.reactivex.Observable
 import org.junit.Before
@@ -27,7 +28,7 @@ class GetRecipesByIngredientsUseCaseTest {
         recipesDataSourceMock = mock(RecipesDataSource::class.java)
         scheduler = TrampolineSchedulerProvider()
         getRecipesByIngredientsUseCase =
-            GetRecipesByIngredientsUseCase.Impl(recipesDataSourceMock, scheduler)
+            GetRecipesByIngredientsUseCaseImpl(recipesDataSourceMock, scheduler)
     }
 
     @Test

@@ -1,5 +1,7 @@
 package com.caioluis.receitas.presentation.structure
 
+import com.caioluis.receitas.domain.structure.app.interactor.RecipesInteractor
+import com.caioluis.receitas.domain.structure.app.reducer.RecipesReducer
 import com.caioluis.receitas.presentation.ui.RecipeUiEvent
 import com.caioluis.receitas.presentation.ui.RecipesUiEventTransformer
 import com.caioluis.receitas.util.BaseSchedulerProvider
@@ -34,7 +36,7 @@ class RecipesPresenter(
                 )
             }.subscribeOn(schedulerProvider.ui())
             .observeOn(schedulerProvider.ui())
-            .subscribe(stateSubject::onNext)
+            .subscribe { stateSubject.onNext(it as RecipesState) }
     }
 
     fun dispatchCommand(recipesEvent: RecipeUiEvent) {

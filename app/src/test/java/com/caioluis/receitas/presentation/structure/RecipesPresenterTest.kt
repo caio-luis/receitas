@@ -1,6 +1,8 @@
 package com.caioluis.receitas.presentation.structure
 
 import com.caioluis.receitas.data.RecipesDataSource
+import com.caioluis.receitas.domain.structure.app.interactor.RecipesInteractor
+import com.caioluis.receitas.domain.structure.app.reducer.RecipesReducer
 import com.caioluis.receitas.domain.usecase.GetRecipesByIngredientsUseCase
 import com.caioluis.receitas.presentation.ui.RecipeUiEvent
 import com.caioluis.receitas.util.TrampolineSchedulerProvider
@@ -11,21 +13,28 @@ import org.mockito.Mockito.mock
 
 class RecipesPresenterTest {
 
-    @Mock private lateinit var getRecipesByIngredientsUseCase: GetRecipesByIngredientsUseCase
-    @Mock private lateinit var recipesDataSource: RecipesDataSource
-    @Mock private lateinit var interactor: RecipesInteractor
-    @Mock private lateinit var reducer: RecipesReducer
+    @Mock
+    private lateinit var getRecipesByIngredientsUseCase: GetRecipesByIngredientsUseCase
+
+    @Mock
+    private lateinit var recipesDataSource: RecipesDataSource
+
+    @Mock
+    private lateinit var interactor: RecipesInteractor
+
+    @Mock
+    private lateinit var reducer: RecipesReducer
 
     private lateinit var schedulerProvider: TrampolineSchedulerProvider
     private lateinit var presenter: RecipesPresenter
 
     @Before
     fun setUp() {
-        recipesDataSource = mock(RecipesDataSource::class.java)
         getRecipesByIngredientsUseCase = mock(GetRecipesByIngredientsUseCase::class.java)
+        recipesDataSource = mock(RecipesDataSource::class.java)
+        schedulerProvider = TrampolineSchedulerProvider()
         interactor = mock(RecipesInteractor::class.java)
         reducer = mock(RecipesReducer::class.java)
-        schedulerProvider = TrampolineSchedulerProvider()
         presenter = RecipesPresenter(
             recipesInteractor = interactor,
             recipesReducer = reducer,

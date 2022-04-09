@@ -1,5 +1,8 @@
 package com.caioluis.receitas.presentation.structure
 
+import com.caioluis.receitas.domain.structure.app.reducer.RecipesReducer
+import com.caioluis.receitas.domain.structure.base.Effect
+import com.caioluis.receitas.domain.structure.base.State
 import com.caioluis.receitas.domain.usecase.AddIngredientsOnListUseCase
 import com.caioluis.receitas.domain.usecase.RemoveIngredientUseCase
 
@@ -7,8 +10,11 @@ class RecipesReducerImpl(
     private val addIngredientsOnListUseCase: AddIngredientsOnListUseCase,
     private val removeIngredientUseCase: RemoveIngredientUseCase
 ) : RecipesReducer {
-    override fun invoke(state: RecipesState, effect: RecipesEffect): RecipesState =
-        when (effect) {
+    override fun invoke(state: State, effect: Effect): RecipesState {
+
+        state as RecipesState
+
+        return when (effect) {
             is RecipesEffect.ShowRecipes -> state.copy(
                 loading = false,
                 recipes = effect.recipes,
@@ -47,5 +53,7 @@ class RecipesReducerImpl(
                 ),
                 error = null
             )
+            else -> state
         }
+    }
 }
