@@ -20,7 +20,8 @@ class RecipesInteractorTest {
 
     @Before
     fun setup() {
-        getRecipesByIngredientsUseCase = mock(GetRecipesByIngredientsUseCase::class.java)
+        getRecipesByIngredientsUseCase =
+            mock(GetRecipesByIngredientsUseCase::class.java)
         interactor = RecipesInteractorImpl(getRecipesByIngredientsUseCase)
 
         `when`(getRecipesByIngredientsUseCase.invoke(ingredients = listOf()))

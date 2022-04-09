@@ -1,13 +1,14 @@
 package com.caioluis.receitas.domain.usecase
 
-import com.caioluis.receitas.presentation.structure.IngredientsToSearch
+import com.caioluis.receitas.domain.model.IngredientsToSearch
+import com.caioluis.receitas.usecase.AddIngredientsOnListUseCaseImpl
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class AddIngredientsOnListUseCaseTest {
 
     private var addIngredientsOnListUseCase: AddIngredientsOnListUseCase =
-        AddIngredientsOnListUseCase.Impl()
+        AddIngredientsOnListUseCaseImpl()
 
     @Test
     fun `assert that add one ingredient to empty list is correct`() {
@@ -30,6 +31,7 @@ class AddIngredientsOnListUseCaseTest {
             )
         )
     }
+
     @Test
     fun `assert that do not add a ingredient that is already in the list`() {
         assertEquals(
@@ -40,6 +42,7 @@ class AddIngredientsOnListUseCaseTest {
             )
         )
     }
+
     @Test
     fun `assert that add ingredient to list with 3 items do not reach the limit`() {
         assertEquals(

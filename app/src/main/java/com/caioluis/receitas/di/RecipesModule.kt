@@ -6,14 +6,16 @@ import com.caioluis.receitas.data.local.database.RecipesDao
 import com.caioluis.receitas.data.local.database.RecipesDataBase
 import com.caioluis.receitas.data.local.mapper.IngredientsSearchSqlQueryMapper
 import com.caioluis.receitas.data.local.mapper.RecipesLocalMapper
+import com.caioluis.receitas.domain.structure.app.interactor.RecipesInteractor
+import com.caioluis.receitas.domain.structure.app.reducer.RecipesReducer
 import com.caioluis.receitas.domain.usecase.AddIngredientsOnListUseCase
 import com.caioluis.receitas.domain.usecase.GetRecipesByIngredientsUseCase
 import com.caioluis.receitas.domain.usecase.RemoveIngredientUseCase
-import com.caioluis.receitas.presentation.structure.RecipesInteractor
 import com.caioluis.receitas.presentation.structure.RecipesInteractorImpl
 import com.caioluis.receitas.presentation.structure.RecipesPresenter
-import com.caioluis.receitas.presentation.structure.RecipesReducer
 import com.caioluis.receitas.presentation.structure.RecipesReducerImpl
+import com.caioluis.receitas.usecase.AddIngredientsOnListUseCaseImpl
+import com.caioluis.receitas.usecase.GetRecipesByIngredientsUseCaseImpl
 import com.caioluis.receitas.util.BaseSchedulerProvider
 import com.caioluis.receitas.util.SchedulerProvider
 import dagger.Module
@@ -28,7 +30,7 @@ object RecipesModule {
     // Use Cases
     @[Provides JvmStatic]
     fun provideAddIngredientsOnListUseCase(): AddIngredientsOnListUseCase =
-        AddIngredientsOnListUseCase.Impl()
+        AddIngredientsOnListUseCaseImpl()
 
     @[Provides JvmStatic]
     fun provideRemoveIngredientUseCase(): RemoveIngredientUseCase =
@@ -38,7 +40,7 @@ object RecipesModule {
     fun provideGetRecipesByIngredientsUseCase(
         dataSource: RecipesDataSource,
         scheduler: BaseSchedulerProvider
-    ): GetRecipesByIngredientsUseCase = GetRecipesByIngredientsUseCase.Impl(dataSource, scheduler)
+    ): GetRecipesByIngredientsUseCase = GetRecipesByIngredientsUseCaseImpl(dataSource, scheduler)
 
     // Mappers
     @[Provides JvmStatic]

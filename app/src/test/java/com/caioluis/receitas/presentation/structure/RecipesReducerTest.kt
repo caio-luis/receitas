@@ -1,5 +1,6 @@
 package com.caioluis.receitas.presentation.structure
 
+import com.caioluis.receitas.domain.model.IngredientsToSearch
 import com.caioluis.receitas.domain.usecase.AddIngredientsOnListUseCase
 import com.caioluis.receitas.domain.usecase.RemoveIngredientUseCase
 import org.junit.Assert.assertEquals
