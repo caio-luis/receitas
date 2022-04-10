@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.caioluis.receitas.R
 import com.caioluis.receitas.data.local.database.RecipesDao
-import com.caioluis.receitas.data.model.Recipe
+import com.caioluis.receitas.data.local.model.Recipe
 import com.caioluis.receitas.util.BaseSchedulerProvider
 import com.caioluis.receitas.util.getJsonDataFromAsset
 import com.caioluis.receitas.util.showToast

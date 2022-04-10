@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Receitas</string>
     <string name="title_activity_recipes">RecipesActivity</string>
+    <string name="title_activity_splash">SplashActivity</string>
 
     <string name="insert_ingredient_hint">Insira o ingrediente</string>
     <string name="ingredients_limit_reached">Limite de ingredientes alcançado.</string>
