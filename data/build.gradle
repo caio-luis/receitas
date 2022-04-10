@@ -1,0 +1,24 @@
+apply plugin: 'com.android.library'
+apply plugin: 'org.jetbrains.kotlin.android'
+apply from: '../buildSrc/build-android.gradle'
+
+dependencies {
+    implementation project(path: ':domain')
+
+    implementation Dependencies.room
+    implementation Dependencies.roomRxJava2
+    implementation Dependencies.gson
+    implementation Dependencies.rxJava
+    implementation Dependencies.dagger
+    implementation TestDependencies.androidxJUnit
+
+    testImplementation TestDependencies.junit
+    testImplementation TestDependencies.assertJ
+    testImplementation TestDependencies.androidCoreKtx
+    testImplementation TestDependencies.coreTesting
+    testImplementation TestDependencies.androidTestCore
+    testImplementation TestDependencies.androidTestRunner
+
+    kapt Dependencies.daggerCompiler
+    kapt Dependencies.roomCompiler
+}

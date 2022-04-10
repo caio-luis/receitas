@@ -1,7 +1,7 @@
 package com.caioluis.receitas
 
-import com.caioluis.receitas.data.model.Recipe
-import com.caioluis.receitas.data.model.Section
+import com.caioluis.receitas.data.local.model.Recipe
+import com.caioluis.receitas.data.local.model.Section
 import com.caioluis.receitas.domain.model.DomainRecipe
 import com.caioluis.receitas.domain.model.DomainSection
 

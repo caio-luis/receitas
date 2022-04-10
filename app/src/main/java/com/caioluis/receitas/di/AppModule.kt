@@ -1,10 +1,8 @@
 package com.caioluis.receitas.di
 
 import android.content.Context
-import androidx.compose.material.ExperimentalMaterialApi
 import com.caioluis.receitas.RecipesApplication
 import com.caioluis.receitas.presentation.ui.RecipesActivity
-import com.caioluis.receitas.presentation.ui.RecipesComposeActivity
 import com.caioluis.receitas.presentation.ui.SplashActivity
 import dagger.Binds
 import dagger.Module
@@ -16,9 +14,6 @@ import javax.inject.Singleton
 abstract class AppModule {
     @[Binds Singleton]
     abstract fun context(app: RecipesApplication): Context
-
-    @[ExperimentalMaterialApi ContributesAndroidInjector]
-    abstract fun injectRecipesComposeActivity(): RecipesComposeActivity
 
     @ContributesAndroidInjector
     abstract fun injectRecipesActivity(): RecipesActivity

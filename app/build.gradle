@@ -1,7 +1,15 @@
+apply plugin: 'com.android.application'
 apply from: '../buildSrc/build-android.gradle'
+
+android {
+    defaultConfig {
+        applicationId "com.caioluis.receitas"
+    }
+}
 
 dependencies {
     implementation project(path: ':domain')
+    implementation project(path: ':data')
 
     implementation CoreDependencies.kotlinStdLib
     implementation CoreDependencies.appCompat
@@ -9,23 +17,16 @@ dependencies {
 
     implementation Dependencies.constraintLayout
     implementation Dependencies.materialDesign
-    debugImplementation Dependencies.composeUiTooling
-    implementation Dependencies.composeMaterial
-    implementation Dependencies.composeActivity
-    implementation Dependencies.composeUi
 
     implementation Dependencies.rxAndroid
     implementation Dependencies.rxKotlin
     implementation Dependencies.rxJava
     implementation Dependencies.gson
-    implementation Dependencies.roomRxJava2
-    implementation Dependencies.room
     implementation Dependencies.dagger
     implementation Dependencies.daggerAndroid
     implementation Dependencies.lifecycle
 
     kapt Dependencies.daggerCompiler
-    kapt Dependencies.roomCompiler
     kapt Dependencies.daggerProcessor
 
     testImplementation TestDependencies.junit
