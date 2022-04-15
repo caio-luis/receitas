@@ -1,0 +1,6 @@
+apply from: "$rootDir/buildSrc/java-config.gradle"
+
+dependencies {
+    implementation CoreDependencies.kotlinStdLib
+    implementation Dependencies.rxJava
+}

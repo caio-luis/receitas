@@ -1,9 +1,8 @@
 apply plugin: 'com.android.library'
-apply plugin: 'org.jetbrains.kotlin.android'
-apply from: '../buildSrc/build-android.gradle'
+apply from: "$rootDir/buildSrc/android-config.gradle"
 
 dependencies {
-    implementation project(path: ':domain')
+    implementation project(path: ':domain:bridge')
 
     implementation Dependencies.room
     implementation Dependencies.roomRxJava2

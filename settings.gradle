@@ -7,5 +7,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Receitas"
 include ':app'
-include ':domain'
 include ':data'
+include ':domain'
+include ':domain:bridge'
+include ':domain:implementation'
