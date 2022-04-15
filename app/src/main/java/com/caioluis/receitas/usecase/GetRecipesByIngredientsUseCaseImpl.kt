@@ -1,9 +1,9 @@
 package com.caioluis.receitas.usecase
 
+import com.caioluis.receitas.bridge.base.Effect
+import com.caioluis.receitas.bridge.model.DomainRecipe
+import com.caioluis.receitas.bridge.usecase.GetRecipesByIngredientsUseCase
 import com.caioluis.receitas.data.RecipesDataSource
-import com.caioluis.receitas.domain.model.DomainRecipe
-import com.caioluis.receitas.domain.structure.base.Effect
-import com.caioluis.receitas.domain.usecase.GetRecipesByIngredientsUseCase
 import com.caioluis.receitas.presentation.mapper.toViewModel
 import com.caioluis.receitas.presentation.structure.RecipesEffect
 import com.caioluis.receitas.util.BaseSchedulerProvider

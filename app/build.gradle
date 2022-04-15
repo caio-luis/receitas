@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply from: '../buildSrc/build-android.gradle'
+apply from: '../buildSrc/android-config.gradle'
 
 android {
     defaultConfig {
@@ -8,12 +8,10 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':domain')
     implementation project(path: ':data')
+    implementation project(path: ':domain:bridge')
 
-    implementation CoreDependencies.kotlinStdLib
     implementation CoreDependencies.appCompat
-    implementation CoreDependencies.ktxCore
 
     implementation Dependencies.constraintLayout
     implementation Dependencies.materialDesign

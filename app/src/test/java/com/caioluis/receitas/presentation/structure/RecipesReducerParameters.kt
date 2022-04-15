@@ -1,7 +1,7 @@
 package com.caioluis.receitas.presentation.structure
 
+import com.caioluis.receitas.bridge.model.IngredientsToSearch
 import com.caioluis.receitas.Fixtures
-import com.caioluis.receitas.domain.model.IngredientsToSearch
 import com.caioluis.receitas.presentation.mapper.toViewModel
 import com.caioluis.receitas.presentation.structure.RecipesReducerTest.Parameter
 import com.caioluis.receitas.toDomain
@@ -32,7 +32,11 @@ object RecipesReducerParameters {
         finalState = RecipesState(
             loading = false,
             recipes = listOf(),
-            ingredients = IngredientsToSearch(mutableListOf("teste")),
+            ingredients = IngredientsToSearch(
+                mutableListOf(
+                    "teste"
+                )
+            ),
             error = null
         )
     )

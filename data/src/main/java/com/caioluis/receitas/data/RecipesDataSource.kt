@@ -1,9 +1,9 @@
 package com.caioluis.receitas.data
 
+import com.caioluis.receitas.bridge.model.DomainRecipe
 import com.caioluis.receitas.data.local.database.RecipesDao
 import com.caioluis.receitas.data.local.mapper.IngredientsSearchSqlQueryMapper
 import com.caioluis.receitas.data.local.mapper.RecipesLocalMapper
-import com.caioluis.receitas.domain.model.DomainRecipe
 import io.reactivex.Observable
 
 interface RecipesDataSource {

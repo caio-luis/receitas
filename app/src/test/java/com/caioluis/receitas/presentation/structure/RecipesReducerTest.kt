@@ -1,8 +1,8 @@
 package com.caioluis.receitas.presentation.structure
 
-import com.caioluis.receitas.domain.model.IngredientsToSearch
-import com.caioluis.receitas.domain.usecase.AddIngredientsOnListUseCase
-import com.caioluis.receitas.domain.usecase.RemoveIngredientUseCase
+import com.caioluis.receitas.bridge.model.IngredientsToSearch
+import com.caioluis.receitas.bridge.usecase.AddIngredientsOnListUseCase
+import com.caioluis.receitas.bridge.usecase.RemoveIngredientUseCase
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test

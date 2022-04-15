@@ -1,9 +1,9 @@
 package com.caioluis.receitas.presentation.structure
 
+import com.caioluis.receitas.bridge.app.interactor.RecipesInteractor
+import com.caioluis.receitas.bridge.app.reducer.RecipesReducer
+import com.caioluis.receitas.bridge.usecase.GetRecipesByIngredientsUseCase
 import com.caioluis.receitas.data.RecipesDataSource
-import com.caioluis.receitas.domain.structure.app.interactor.RecipesInteractor
-import com.caioluis.receitas.domain.structure.app.reducer.RecipesReducer
-import com.caioluis.receitas.domain.usecase.GetRecipesByIngredientsUseCase
 import com.caioluis.receitas.presentation.ui.RecipeUiEvent
 import com.caioluis.receitas.util.TrampolineSchedulerProvider
 import org.junit.Before
