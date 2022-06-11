@@ -8,6 +8,7 @@ import com.caioluis.receitas.bridge.usecase.RemoveIngredientUseCase
 import com.caioluis.receitas.data.RecipesDataSource
 import com.caioluis.receitas.data.local.mapper.IngredientsSearchSqlQueryMapper
 import com.caioluis.receitas.data.local.mapper.RecipesLocalMapper
+import com.caioluis.receitas.presentation.mapper.RecipeDetailsMapper
 import com.caioluis.receitas.presentation.structure.RecipesInteractorImpl
 import com.caioluis.receitas.presentation.structure.RecipesPresenter
 import com.caioluis.receitas.presentation.structure.RecipesReducerImpl
@@ -47,6 +48,10 @@ object RecipesModule {
 
     @[Provides JvmStatic]
     fun provideRecipesLocalMapper(): RecipesLocalMapper = RecipesLocalMapper.Impl()
+
+    @[Provides JvmStatic]
+    fun provideRecipeDetailsMapper(): RecipeDetailsMapper =
+        RecipeDetailsMapper.RecipeDetailsMapperImpl()
 
     // Presentation
     @[Provides JvmStatic]

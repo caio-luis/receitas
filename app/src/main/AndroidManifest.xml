@@ -10,15 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Receitas">
         <activity
+            android:name=".presentation.ui.RecipeDetailsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Receitas.NoActionBar" />
+        <activity
             android:name=".presentation.ui.RecipesActivity"
             android:exported="true"
             android:label="@string/title_activity_recipes"
             android:theme="@style/Theme.Receitas.NoActionBar" />
-
         <activity
             android:name=".presentation.ui.SplashActivity"
             android:exported="true"
-            android:label="@string/title_activity_splash"
             android:theme="@style/Theme.Receitas.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

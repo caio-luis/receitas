@@ -9,7 +9,8 @@ fun DomainRecipe.toViewModel(): RecipeViewModel {
     return RecipeViewModel(
         id = id.orEmpty(),
         recipeName = recipeName.orEmpty(),
-        sections = sections?.map { it.toViewModel() }.orEmpty()
+        sections = sections?.map { it.toViewModel() }.orEmpty(),
+        ingredients = ingredients.orEmpty()
     )
 }
 

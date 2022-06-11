@@ -6,7 +6,7 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.caioluis.receitas.R
-import com.caioluis.receitas.presentation.RecipesAdapter
+import com.caioluis.receitas.presentation.adapter.RecipesAdapter
 import com.caioluis.receitas.presentation.model.RecipeViewModel
 import com.caioluis.receitas.presentation.structure.RecipesPresenter
 import com.caioluis.receitas.presentation.structure.RecipesState
