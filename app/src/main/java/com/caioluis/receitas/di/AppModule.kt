@@ -2,6 +2,7 @@ package com.caioluis.receitas.di
 
 import android.content.Context
 import com.caioluis.receitas.RecipesApplication
+import com.caioluis.receitas.presentation.ui.RecipeDetailsActivity
 import com.caioluis.receitas.presentation.ui.RecipesActivity
 import com.caioluis.receitas.presentation.ui.SplashActivity
 import dagger.Binds
@@ -17,6 +18,9 @@ abstract class AppModule {
 
     @ContributesAndroidInjector
     abstract fun injectRecipesActivity(): RecipesActivity
+
+    @ContributesAndroidInjector
+    abstract fun injectRecipeDetailsActivity(): RecipeDetailsActivity
 
     @ContributesAndroidInjector
     abstract fun injectSplashActivity(): SplashActivity

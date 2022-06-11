@@ -1,4 +1,4 @@
-package com.caioluis.receitas.presentation
+package com.caioluis.receitas.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.caioluis.receitas.R
 import com.caioluis.receitas.presentation.model.RecipeViewModel
+import com.caioluis.receitas.presentation.ui.RecipeDetailsActivity
 
 class RecipesAdapter :
     ListAdapter<RecipeViewModel, RecipesAdapter.RecipesViewHolder>(RECIPES_COMPARATOR) {
@@ -17,6 +18,11 @@ class RecipesAdapter :
         fun bind(recipe: RecipeViewModel) {
             val title = itemView.findViewById<TextView>(R.id.recipe_title)
             title.text = recipe.recipeName
+
+            title.setOnClickListener {
+                val intent = RecipeDetailsActivity.createIntent(recipe, itemView.context)
+                itemView.context.startActivity(intent)
+            }
         }
     }
 
