@@ -12,6 +12,7 @@ dependencies {
     implementation project(path: ':domain:bridge')
     implementation project(path: ':notification:bridge')
     implementation project(path: ':notification:di')
+    implementation project(path: ':nativelib')
 
     implementation CoreDependencies.appCompat
 

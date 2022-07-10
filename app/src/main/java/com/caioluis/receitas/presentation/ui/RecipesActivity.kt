@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.caioluis.nativelib.NativeLib
 import com.caioluis.receitas.R
 import com.caioluis.receitas.notifications.bridge.NotificationHelper
 import com.caioluis.receitas.presentation.adapter.RecipesAdapter
@@ -31,6 +32,7 @@ class RecipesActivity : AppCompatActivity(R.layout.activity_recipes) {
 
     private val disposable = CompositeDisposable()
     private val recipesAdapter = RecipesAdapter()
+    private val nativeLib = NativeLib()
 
     private var recipesState = RecipesState()
 
@@ -45,6 +47,7 @@ class RecipesActivity : AppCompatActivity(R.layout.activity_recipes) {
         observeState()
         setAdapter()
         subscribeClickEvents()
+        nativeLib.stringFromJNI()
     }
 
     private fun subscribeClickEvents() {

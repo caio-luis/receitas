@@ -1,0 +1,20 @@
+apply plugin: 'com.android.library'
+apply from: "$rootDir/buildSrc/android-config.gradle"
+
+android {
+
+    defaultConfig {
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+            }
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+            version "3.18.1"
+        }
+    }
+}

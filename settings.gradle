@@ -21,3 +21,4 @@ include(
         ':notification:impl',
         ':notification:bridge'
 )
+include ':nativelib'
