@@ -6,6 +6,7 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.caioluis.receitas.R
+import com.caioluis.receitas.notifications.bridge.NotificationHelper
 import com.caioluis.receitas.presentation.adapter.RecipesAdapter
 import com.caioluis.receitas.presentation.model.RecipeViewModel
 import com.caioluis.receitas.presentation.structure.RecipesPresenter
@@ -24,6 +25,9 @@ class RecipesActivity : AppCompatActivity(R.layout.activity_recipes) {
 
     @Inject
     lateinit var recipesPresenter: RecipesPresenter
+
+    @Inject
+    lateinit var notificationHelper: NotificationHelper
 
     private val disposable = CompositeDisposable()
     private val recipesAdapter = RecipesAdapter()

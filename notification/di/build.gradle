@@ -1,0 +1,10 @@
+apply plugin: 'com.android.library'
+apply from: "$rootDir/buildSrc/android-config.gradle"
+
+dependencies {
+    implementation project(path: ':notification:bridge')
+    implementation project(path: ':notification:impl')
+
+    implementation Dependencies.dagger
+    kapt Dependencies.daggerCompiler
+}
