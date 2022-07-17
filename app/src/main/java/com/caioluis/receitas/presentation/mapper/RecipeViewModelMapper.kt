@@ -1,7 +1,7 @@
 package com.caioluis.receitas.presentation.mapper
 
-import com.caioluis.receitas.bridge.model.DomainRecipe
-import com.caioluis.receitas.bridge.model.DomainSection
+import com.caioluis.receitas.domain.model.DomainRecipe
+import com.caioluis.receitas.domain.model.DomainSection
 import com.caioluis.receitas.presentation.model.RecipeSectionViewModel
 import com.caioluis.receitas.presentation.model.RecipeViewModel
 

@@ -1,10 +1,10 @@
 package com.caioluis.receitas.presentation.structure
 
-import com.caioluis.receitas.bridge.app.interactor.RecipesInteractor
-import com.caioluis.receitas.bridge.base.Command
-import com.caioluis.receitas.bridge.base.Effect
-import com.caioluis.receitas.bridge.base.State
-import com.caioluis.receitas.bridge.usecase.GetRecipesByIngredientsUseCase
+import com.caioluis.receitas.domain.app.interactor.RecipesInteractor
+import com.caioluis.receitas.domain.base.Command
+import com.caioluis.receitas.domain.base.Effect
+import com.caioluis.receitas.domain.base.State
+import com.caioluis.receitas.domain.usecase.GetRecipesByIngredientsUseCase
 import io.reactivex.Observable
 
 class RecipesInteractorImpl(

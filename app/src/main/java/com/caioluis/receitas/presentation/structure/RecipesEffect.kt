@@ -1,6 +1,6 @@
 package com.caioluis.receitas.presentation.structure
 
-import com.caioluis.receitas.bridge.base.Effect
+import com.caioluis.receitas.domain.base.Effect
 import com.caioluis.receitas.presentation.model.RecipeViewModel
 
 sealed class RecipesEffect : Effect {

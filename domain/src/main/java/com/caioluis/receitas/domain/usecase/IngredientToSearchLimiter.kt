@@ -1,4 +1,4 @@
-package com.caioluis.receitas.bridge.usecase
+package com.caioluis.receitas.domain.usecase
 
 interface IngredientToSearchLimiter {
     val sizeLimit: Int

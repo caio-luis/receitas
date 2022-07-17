@@ -1,6 +1,6 @@
 package com.caioluis.receitas.presentation.structure
 
-import com.caioluis.receitas.bridge.usecase.GetRecipesByIngredientsUseCase
+import com.caioluis.receitas.domain.usecase.GetRecipesByIngredientsUseCase
 import io.reactivex.Observable
 import org.junit.Before
 import org.junit.Test

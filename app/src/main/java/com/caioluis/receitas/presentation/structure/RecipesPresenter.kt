@@ -1,7 +1,7 @@
 package com.caioluis.receitas.presentation.structure
 
-import com.caioluis.receitas.bridge.app.interactor.RecipesInteractor
-import com.caioluis.receitas.bridge.app.reducer.RecipesReducer
+import com.caioluis.receitas.domain.app.interactor.RecipesInteractor
+import com.caioluis.receitas.domain.app.reducer.RecipesReducer
 import com.caioluis.receitas.presentation.ui.RecipeUiEvent
 import com.caioluis.receitas.presentation.ui.RecipesUiEventTransformer
 import com.caioluis.receitas.util.BaseSchedulerProvider

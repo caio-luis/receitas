@@ -1,6 +1,6 @@
-package com.caioluis.receitas.bridge.usecase
+package com.caioluis.receitas.domain.usecase
 
-import com.caioluis.receitas.bridge.base.Effect
+import com.caioluis.receitas.domain.base.Effect
 import io.reactivex.Observable
 
 interface GetRecipesByIngredientsUseCase {

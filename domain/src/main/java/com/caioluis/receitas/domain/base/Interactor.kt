@@ -1,4 +1,4 @@
-package com.caioluis.receitas.bridge.base
+package com.caioluis.receitas.domain.base
 
 import io.reactivex.Observable
 

@@ -1,13 +1,13 @@
 package com.caioluis.receitas.di
 
-import com.caioluis.receitas.bridge.app.interactor.RecipesInteractor
-import com.caioluis.receitas.bridge.app.reducer.RecipesReducer
-import com.caioluis.receitas.bridge.usecase.AddIngredientsOnListUseCase
-import com.caioluis.receitas.bridge.usecase.GetRecipesByIngredientsUseCase
-import com.caioluis.receitas.bridge.usecase.RemoveIngredientUseCase
 import com.caioluis.receitas.data.RecipesDataSource
 import com.caioluis.receitas.data.local.mapper.IngredientsSearchSqlQueryMapper
 import com.caioluis.receitas.data.local.mapper.RecipesLocalMapper
+import com.caioluis.receitas.domain.app.interactor.RecipesInteractor
+import com.caioluis.receitas.domain.app.reducer.RecipesReducer
+import com.caioluis.receitas.domain.usecase.AddIngredientsOnListUseCase
+import com.caioluis.receitas.domain.usecase.GetRecipesByIngredientsUseCase
+import com.caioluis.receitas.domain.usecase.RemoveIngredientUseCase
 import com.caioluis.receitas.presentation.mapper.RecipeDetailsMapper
 import com.caioluis.receitas.presentation.structure.RecipesInteractorImpl
 import com.caioluis.receitas.presentation.structure.RecipesPresenter

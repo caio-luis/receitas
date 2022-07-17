@@ -1,6 +1,6 @@
-package com.caioluis.receitas.bridge.usecase
+package com.caioluis.receitas.domain.usecase
 
-import com.caioluis.receitas.bridge.model.IngredientsToSearch
+import com.caioluis.receitas.domain.model.IngredientsToSearch
 
 interface RemoveIngredientUseCase : IngredientToSearchLimiter {
     operator fun invoke(

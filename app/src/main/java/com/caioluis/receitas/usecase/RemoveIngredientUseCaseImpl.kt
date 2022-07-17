@@ -1,7 +1,7 @@
 package com.caioluis.receitas.usecase
 
-import com.caioluis.receitas.bridge.model.IngredientsToSearch
-import com.caioluis.receitas.bridge.usecase.RemoveIngredientUseCase
+import com.caioluis.receitas.domain.model.IngredientsToSearch
+import com.caioluis.receitas.domain.usecase.RemoveIngredientUseCase
 
 class RemoveIngredientUseCaseImpl : RemoveIngredientUseCase {
     override fun invoke(
