@@ -1,5 +1,0 @@
-apply from: "$rootDir/buildSrc/java-config.gradle"
-
-dependencies {
-    implementation Dependencies.rxJava
-}

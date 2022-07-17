@@ -1,7 +1,7 @@
 package com.caioluis.receitas.presentation.structure
 
-import com.caioluis.receitas.bridge.base.State
-import com.caioluis.receitas.bridge.model.IngredientsToSearch
+import com.caioluis.receitas.domain.base.State
+import com.caioluis.receitas.domain.model.IngredientsToSearch
 import com.caioluis.receitas.presentation.model.RecipeViewModel
 
 data class RecipesState(

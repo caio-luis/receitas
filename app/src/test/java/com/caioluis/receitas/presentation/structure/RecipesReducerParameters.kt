@@ -1,6 +1,6 @@
 package com.caioluis.receitas.presentation.structure
 
-import com.caioluis.receitas.bridge.model.IngredientsToSearch
+import com.caioluis.receitas.domain.model.IngredientsToSearch
 import com.caioluis.receitas.Fixtures
 import com.caioluis.receitas.presentation.mapper.toViewModel
 import com.caioluis.receitas.presentation.structure.RecipesReducerTest.Parameter

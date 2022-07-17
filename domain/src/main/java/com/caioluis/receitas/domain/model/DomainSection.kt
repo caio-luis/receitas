@@ -1,4 +1,4 @@
-package com.caioluis.receitas.bridge.model
+package com.caioluis.receitas.domain.model
 
 data class DomainSection(
     val sectionName: String? = "",

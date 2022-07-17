@@ -1,10 +1,10 @@
 package com.caioluis.receitas.presentation.structure
 
-import com.caioluis.receitas.bridge.app.reducer.RecipesReducer
-import com.caioluis.receitas.bridge.base.Effect
-import com.caioluis.receitas.bridge.base.State
-import com.caioluis.receitas.bridge.usecase.AddIngredientsOnListUseCase
-import com.caioluis.receitas.bridge.usecase.RemoveIngredientUseCase
+import com.caioluis.receitas.domain.app.reducer.RecipesReducer
+import com.caioluis.receitas.domain.base.Effect
+import com.caioluis.receitas.domain.base.State
+import com.caioluis.receitas.domain.usecase.AddIngredientsOnListUseCase
+import com.caioluis.receitas.domain.usecase.RemoveIngredientUseCase
 
 class RecipesReducerImpl(
     private val addIngredientsOnListUseCase: AddIngredientsOnListUseCase,

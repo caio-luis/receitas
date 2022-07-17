@@ -1,7 +1,7 @@
 package com.caioluis.receitas.usecase
 
-import com.caioluis.receitas.bridge.model.IngredientsToSearch
-import com.caioluis.receitas.bridge.usecase.AddIngredientsOnListUseCase
+import com.caioluis.receitas.domain.model.IngredientsToSearch
+import com.caioluis.receitas.domain.usecase.AddIngredientsOnListUseCase
 
 class AddIngredientsOnListUseCaseImpl : AddIngredientsOnListUseCase {
     override fun invoke(
