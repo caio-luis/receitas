@@ -1,6 +1,6 @@
 package com.caioluis.receitas.data.local.mapper
 
-import com.caioluis.receitas.data.Fixtures
+import com.caioluis.receitas.data.local.Fixtures
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

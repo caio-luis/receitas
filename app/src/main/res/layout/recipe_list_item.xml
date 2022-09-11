@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="6dp"
     android:clickable="true"
-    android:padding="8dp"
     android:focusable="true"
     app:cardCornerRadius="6dp"
     app:cardElevation="6dp">
@@ -14,9 +14,12 @@
         android:id="@+id/recipe_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:gravity="center"
         android:padding="10dp"
+        android:textColor="@color/brown"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:drawableEndCompat="@drawable/ic_baseline_navigate_next_24"
         tools:text="Nome da receita" />
 </com.google.android.material.card.MaterialCardView>
