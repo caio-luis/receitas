@@ -6,28 +6,14 @@ on:
   pull_request:
 
 jobs:
-
-  test:
-
-    runs-on: self-hosted
-
-    steps:
-      - uses: actions/checkout@v3
-      
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-        
-      - name: run all the tests
-        run: bundle exec fastlane test
         
   build:
     runs-on: self-hosted
-    needs: test
     steps:
       - uses: actions/checkout@v3
     
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
         
-      - name: run build with fastlane
+      - name: run assemble and tests with fastlane
         run: bundle exec fastlane build
