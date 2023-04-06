@@ -2,7 +2,7 @@ package com.caioluis.receitas.data.local.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.caioluis.receitas.data.local.database.RecipesDataBase.Companion.RECIPES_TABLE_NAME
+import com.caioluis.receitas.data.local.database.DataBaseConstants.RECIPES_TABLE_NAME
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = RECIPES_TABLE_NAME)

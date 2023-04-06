@@ -23,6 +23,8 @@ object TestDependencies {
     const val mockitoCore = "org.mockito:mockito-core:${TestVersions.mockito}"
     const val mockitoInline = "org.mockito:mockito-inline:${TestVersions.mockito}"
     const val mockitoKotlin = "org.mockito.kotlin:mockito-kotlin:${TestVersions.mockitoKotlin}"
+
+    const val mockk = "io.mockk:mockk:${TestVersions.mockk}"
 }
 
 object Dependencies {
@@ -52,4 +54,8 @@ object Dependencies {
         "androidx.activity:activity-compose:${DesignVersions.activityCompose}"
 
     const val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
+
+    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    const val retrofitGson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+    const val retrofitRxJavaAdapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
 }

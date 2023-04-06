@@ -5,11 +5,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.caioluis.receitas.data.local.database.DataBaseConstants.DATABASE_NAME
+import com.caioluis.receitas.data.local.database.DataBaseConstants.DATABASE_VERSION
 import com.caioluis.receitas.data.local.model.Recipe
 
 @Database(
     entities = [Recipe::class],
-    version = 1,
+    version = DATABASE_VERSION,
     exportSchema = false
 )
 
@@ -19,8 +21,6 @@ abstract class RecipesDataBase : RoomDatabase() {
     abstract fun recipesDao(): RecipesDao
 
     companion object {
-
-        const val RECIPES_TABLE_NAME = "receitas"
 
         private var INSTANCE: RecipesDataBase? = null
 
@@ -33,7 +33,7 @@ abstract class RecipesDataBase : RoomDatabase() {
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(
                 context.applicationContext,
-                RecipesDataBase::class.java, "recipes.db"
+                RecipesDataBase::class.java, DATABASE_NAME
             )
                 .fallbackToDestructiveMigration()
                 .build()

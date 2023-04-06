@@ -1,8 +1,6 @@
 package com.caioluis.receitas.di
 
 import com.caioluis.receitas.data.RecipesDataSource
-import com.caioluis.receitas.data.local.mapper.IngredientsSearchSqlQueryMapper
-import com.caioluis.receitas.data.local.mapper.RecipesLocalMapper
 import com.caioluis.receitas.domain.app.interactor.RecipesInteractor
 import com.caioluis.receitas.domain.app.reducer.RecipesReducer
 import com.caioluis.receitas.domain.usecase.AddIngredientsOnListUseCase
@@ -42,12 +40,6 @@ object RecipesModule {
     ): GetRecipesByIngredientsUseCase = GetRecipesByIngredientsUseCaseImpl(dataSource, scheduler)
 
     // Mappers
-    @[Provides JvmStatic]
-    fun provideIngredientsSearchSqlQueryMapper(): IngredientsSearchSqlQueryMapper =
-        IngredientsSearchSqlQueryMapper.Impl()
-
-    @[Provides JvmStatic]
-    fun provideRecipesLocalMapper(): RecipesLocalMapper = RecipesLocalMapper.Impl()
 
     @[Provides JvmStatic]
     fun provideRecipeDetailsMapper(): RecipeDetailsMapper =

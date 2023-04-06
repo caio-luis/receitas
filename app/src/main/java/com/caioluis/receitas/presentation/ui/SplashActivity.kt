@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.caioluis.receitas.R
+import com.caioluis.receitas.data.local.database.DataBaseConstants
 import com.caioluis.receitas.data.local.database.RecipesDao
 import com.caioluis.receitas.data.local.model.Recipe
 import com.caioluis.receitas.util.BaseSchedulerProvider
@@ -34,19 +35,26 @@ class SplashActivity : AppCompatActivity(R.layout.activity_splash) {
 
     private fun populateDatabaseFromJsonAsset() {
         val recipesJsonString = getJsonDataFromAsset(applicationContext, "receitas.json")
-        val recipes = Gson().fromJson<List<Recipe>>(
-            recipesJsonString,
-            object : TypeToken<List<Recipe>>() {}.type
-        )
 
-        disposable += Observable.just(Unit)
-            .subscribeOn(schedulerProvider.io())
-            .doOnError { showToast(it.message.toString()) }
-            .doOnComplete {
-                startActivity(Intent(this, RecipesActivity::class.java))
-                finish()
-            }
-            .subscribe { recipesDao.insertRecipes(recipes) }
+        val startAppAction = {
+            startActivity(Intent(this, RecipesActivity::class.java))
+            finish()
+        }
+
+        if (applicationContext.getDatabasePath(DataBaseConstants.DATABASE_NAME).exists()) {
+            startAppAction()
+        } else {
+            val recipes = Gson().fromJson<List<Recipe>>(
+                recipesJsonString,
+                object : TypeToken<List<Recipe>>() {}.type
+            )
+
+            disposable += Observable.just(Unit)
+                .subscribeOn(schedulerProvider.io())
+                .doOnError { showToast(it.message.toString()) }
+                .doOnComplete(startAppAction)
+                .subscribe { recipesDao.insertRecipes(recipes) }
+        }
     }
 
     override fun onDestroy() {
