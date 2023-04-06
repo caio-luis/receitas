@@ -2,7 +2,7 @@ package com.caioluis.receitas.data.local.mapper
 
 import androidx.sqlite.db.SupportSQLiteProgram
 import androidx.sqlite.db.SupportSQLiteQuery
-import com.caioluis.receitas.data.local.database.RecipesDataBase.Companion.RECIPES_TABLE_NAME
+import com.caioluis.receitas.data.local.database.DataBaseConstants.RECIPES_TABLE_NAME
 import java.util.Locale
 
 interface IngredientsSearchSqlQueryMapper {

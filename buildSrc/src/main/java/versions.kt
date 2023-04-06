@@ -24,6 +24,7 @@ internal object Versions {
     const val rxAndroid = "2.1.1"
     const val room = "2.3.0"
     const val lifecycle = "2.4.0"
+    const val retrofit = "2.9.0"
 }
 
 internal object TestVersions {
@@ -37,4 +38,5 @@ internal object TestVersions {
     const val coreTesting = "2.1.0"
     const val mockito = "3.11.2"
     const val mockitoKotlin = "3.2.0"
+    const val mockk = "1.12.0"
 }
