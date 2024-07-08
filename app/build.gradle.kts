@@ -41,8 +41,6 @@ android {
 dependencies {
     implementation(projects.data)
     implementation(projects.domain)
-    implementation(projects.notification.bridge)
-    implementation(projects.notification.di)
 
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)

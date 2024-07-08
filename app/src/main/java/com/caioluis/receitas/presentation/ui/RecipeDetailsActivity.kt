@@ -9,7 +9,6 @@ import com.caioluis.receitas.R
 import com.caioluis.receitas.presentation.adapter.RecipeDetailsAdapter
 import com.caioluis.receitas.presentation.mapper.RecipeDetailsMapper
 import com.caioluis.receitas.presentation.model.RecipeViewModel
-import dagger.android.AndroidInjection
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -23,7 +22,6 @@ class RecipeDetailsActivity : AppCompatActivity(R.layout.activity_recipe_details
     lateinit var recipeDetailsMapper: RecipeDetailsMapper
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
 
         recipeDetailsList.adapter = recipeDetailsAdapter

@@ -24,7 +24,4 @@ include(
     ":app",
     ":domain",
     ":data",
-    ":notification:bridge",
-    ":notification:impl",
-    ":notification:di"
 )

@@ -6,7 +6,6 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.caioluis.receitas.R
-import com.caioluis.receitas.notifications.bridge.NotificationDispatcher
 import com.caioluis.receitas.presentation.adapter.RecipesAdapter
 import com.caioluis.receitas.presentation.model.RecipeViewModel
 import com.caioluis.receitas.presentation.structure.RecipesPresenter
@@ -16,7 +15,6 @@ import com.caioluis.receitas.presentation.viewcomponent.SearchAddInputTextCompon
 import com.caioluis.receitas.util.hide
 import com.caioluis.receitas.util.show
 import com.caioluis.receitas.util.showToast
-import dagger.android.AndroidInjection
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
@@ -27,9 +25,6 @@ class RecipesActivity : AppCompatActivity(R.layout.activity_recipes) {
 
     @Inject
     lateinit var recipesPresenter: RecipesPresenter
-
-    @Inject
-    lateinit var notificationDispatcher: NotificationDispatcher
 
     private val disposable = CompositeDisposable()
     private val recipesAdapter = RecipesAdapter()
@@ -42,7 +37,6 @@ class RecipesActivity : AppCompatActivity(R.layout.activity_recipes) {
     private val ingredientsChipGroup: IngredientsChipGroup by lazy { findViewById(R.id.ingredients_chip_group) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         observeState()
         setAdapter()

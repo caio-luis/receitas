@@ -17,6 +17,7 @@ import com.caioluis.receitas.data.remote.mapper.RecipesRemoteMapperImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -34,7 +35,9 @@ object DataModule {
     ): RecipesDataSource = RecipesDataSourceImpl(localImpl, remoteImpl)
 
     @[Provides Singleton]
-    fun provideRecipesDao(context: Context): RecipesDao =
+    fun provideRecipesDao(
+        @ApplicationContext context: Context
+    ): RecipesDao =
         RecipesDataBase.getInstance(context).recipesDao()
 
     @[Provides Singleton]

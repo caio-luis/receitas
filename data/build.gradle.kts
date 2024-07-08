@@ -45,11 +45,12 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.adapter.rxjava2)
 
+    androidTestImplementation(libs.test.junit)
+    androidTestImplementation(libs.test.ext.junit)
+
     testImplementation(libs.mockk)
-    testImplementation(libs.test.junit)
     testImplementation(libs.assertj.core)
     testImplementation(libs.test.core.testing)
-    testImplementation(libs.test.ext.junit)
     testImplementation(libs.test.core.ktx)
     testImplementation(libs.test.core)
     testImplementation(libs.test.runner)

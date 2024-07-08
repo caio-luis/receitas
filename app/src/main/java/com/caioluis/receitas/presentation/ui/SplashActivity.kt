@@ -12,7 +12,6 @@ import com.caioluis.receitas.util.getJsonDataFromAsset
 import com.caioluis.receitas.util.showToast
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import dagger.android.AndroidInjection
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
@@ -30,7 +29,6 @@ class SplashActivity : AppCompatActivity(R.layout.activity_splash) {
     lateinit var schedulerProvider: BaseSchedulerProvider
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         populateDatabaseFromJsonAsset()
     }
@@ -51,7 +49,6 @@ class SplashActivity : AppCompatActivity(R.layout.activity_splash) {
                 object : TypeToken<List<Recipe>>() {}.type
             ).filter { it.ingredients.orEmpty().isNotEmpty() && it.sections.orEmpty().isNotEmpty() }
 
-            val json = Gson().toJson(recipes)
             disposable += Observable.just(Unit)
                 .subscribeOn(schedulerProvider.io())
                 .doOnError { showToast(it.message.toString()) }
