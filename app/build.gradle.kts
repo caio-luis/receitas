@@ -1,13 +1,13 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.android.kotlin)
-    alias(libs.plugins.android.kapt)
+    alias(libs.plugins.hilt.plugin)
+    alias(libs.plugins.android.ksp)
 }
 
 android {
     namespace = "com.caioluis.receitas"
     compileSdk = 34
-
 
     defaultConfig {
         minSdk = 24
@@ -53,13 +53,15 @@ dependencies {
     implementation(libs.rxjava)
     implementation(libs.gson)
     implementation(libs.mockk)
+    implementation(libs.hilt.android)
     implementation(libs.dagger)
     implementation(libs.dagger.android)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
-    kapt(libs.room.compiler)
-    kapt(libs.dagger.compiler)
-    kapt(libs.dagger.android.processor)
+    ksp(libs.hilt.android.compiler)
+    ksp(libs.room.compiler)
+    ksp(libs.dagger.compiler)
+    ksp(libs.dagger.android.processor)
 
     testImplementation(libs.test.junit)
     testImplementation(libs.test.core)

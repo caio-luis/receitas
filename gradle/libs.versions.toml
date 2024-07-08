@@ -7,8 +7,8 @@ assertj-core = "3.20.2"
 dagger = "2.51.1"
 gson = "2.10.1"
 junit-version = "1.2.1"
-kotlin = "1.9.24"
-kotlin-ksp = "1.9.24-1.0.20"
+kotlin = "2.0.0"
+kotlin-ksp = "2.0.0-1.0.22"
 junit = "4.13.2"
 lifecycle-runtime-ktx = "2.8.3"
 material = "1.12.0"
@@ -50,12 +50,14 @@ rxjava = { module = "io.reactivex.rxjava2:rxjava", version.ref = "rxjava" }
 rxkotlin = { module = "io.reactivex.rxjava2:rxkotlin", version.ref = "rxkotlin" }
 test-runner = { module = "androidx.test:runner", version.ref = "runner-version" }
 androidx-core = { group = "androidx.core", name = "core", version.ref = "core" }
+hilt-gradle-plugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "dagger" }
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "dagger" }
+hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "dagger" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
 android-library = { id = "com.android.library", version.ref = "android-gradle-plugin" }
 android-kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 android-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
-android-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 android-ksp = { id = "com.google.devtools.ksp", version.ref = "kotlin-ksp" }
-
+hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }

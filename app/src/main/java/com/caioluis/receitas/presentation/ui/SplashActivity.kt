@@ -13,11 +13,13 @@ import com.caioluis.receitas.util.showToast
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import dagger.android.AndroidInjection
+import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class SplashActivity : AppCompatActivity(R.layout.activity_splash) {
     private val disposable: CompositeDisposable = CompositeDisposable()
 

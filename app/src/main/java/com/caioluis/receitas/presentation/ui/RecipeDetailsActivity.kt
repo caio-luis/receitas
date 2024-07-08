@@ -10,8 +10,10 @@ import com.caioluis.receitas.presentation.adapter.RecipeDetailsAdapter
 import com.caioluis.receitas.presentation.mapper.RecipeDetailsMapper
 import com.caioluis.receitas.presentation.model.RecipeViewModel
 import dagger.android.AndroidInjection
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class RecipeDetailsActivity : AppCompatActivity(R.layout.activity_recipe_details) {
 
     private val recipeDetailsList: RecyclerView by lazy { findViewById(R.id.recipe_details_list) }

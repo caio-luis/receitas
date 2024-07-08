@@ -16,36 +16,40 @@ import com.caioluis.receitas.data.remote.mapper.RecipesRemoteMapper
 import com.caioluis.receitas.data.remote.mapper.RecipesRemoteMapperImpl
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
+@InstallIn(SingletonComponent::class)
 @Module
 object DataModule {
 
-    @[Provides JvmStatic]
+    @[Provides Singleton]
     fun provideRecipesDataSource(
         localImpl: LocalSource,
         remoteImpl: RemoteSource,
     ): RecipesDataSource = RecipesDataSourceImpl(localImpl, remoteImpl)
 
-    @[Provides JvmStatic]
+    @[Provides Singleton]
     fun provideRecipesDao(context: Context): RecipesDao =
         RecipesDataBase.getInstance(context).recipesDao()
 
-    @[Provides JvmStatic]
+    @[Provides Singleton]
     fun provideRecipesLocalMapper(): RecipesLocalMapper =
         RecipesLocalMapper.Impl()
 
-    @[Provides JvmStatic]
+    @[Provides Singleton]
     fun provideIngredientsSearchSqlQueryMapper(): IngredientsSearchSqlQueryMapper =
         IngredientsSearchSqlQueryMapper.Impl()
 
-    @[Provides JvmStatic]
+    @[Provides Singleton]
     fun provideRecipesRemoteMapper(): RecipesRemoteMapper =
         RecipesRemoteMapperImpl()
 
-    @[Provides JvmStatic]
+    @[Provides Singleton]
     fun provideLocalImpl(
         dao: RecipesDao,
         mapper: RecipesLocalMapper,
@@ -53,14 +57,14 @@ object DataModule {
     ): LocalSource =
         LocalImpl(dao, mapper, queryMapperIngredientsSearch)
 
-    @[Provides JvmStatic]
+    @[Provides Singleton]
     fun provideRemoteImpl(
         service: RecipesService,
         remoteMapperImpl: RecipesRemoteMapper
     ): RemoteSource =
         RemoteImpl(service, remoteMapperImpl)
 
-    @[Provides JvmStatic]
+    @[Provides Singleton]
     fun provideRecipesService(): RecipesService =
         Retrofit.Builder()
             .baseUrl("http://localhost:3000/") // TODO: Temporary until I create the real domain

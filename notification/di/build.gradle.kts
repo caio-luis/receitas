@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
-    alias(libs.plugins.android.kapt)
+    alias(libs.plugins.hilt.plugin)
+    alias(libs.plugins.android.ksp)
 }
 
 android {
@@ -19,8 +20,8 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                    getDefaultProguardFile("proguard-android-optimize.txt"),
-                    "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
             )
         }
     }
@@ -36,5 +37,8 @@ dependencies {
     implementation(projects.notification.impl)
 
     implementation(libs.dagger)
-    kapt(libs.dagger.compiler)
+    implementation(libs.hilt.android)
+
+    ksp(libs.dagger.compiler)
+    ksp(libs.hilt.android.compiler)
 }

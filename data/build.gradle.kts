@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
-    alias(libs.plugins.android.kapt)
+    alias(libs.plugins.hilt.plugin)
+    alias(libs.plugins.android.ksp)
 }
 
 android {
@@ -38,6 +39,7 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.rxjava)
     implementation(libs.dagger)
+    implementation(libs.hilt.android)
     implementation(libs.retrofit)
     implementation(libs.room.rxjava2)
     implementation(libs.converter.gson)
@@ -52,6 +54,7 @@ dependencies {
     testImplementation(libs.test.core)
     testImplementation(libs.test.runner)
 
-    kapt(libs.room.compiler)
-    kapt(libs.dagger.compiler)
+    ksp(libs.room.compiler)
+    ksp(libs.dagger.compiler)
+    ksp(libs.hilt.android.compiler)
 }

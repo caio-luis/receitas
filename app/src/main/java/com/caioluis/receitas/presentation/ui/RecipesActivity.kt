@@ -17,10 +17,12 @@ import com.caioluis.receitas.util.hide
 import com.caioluis.receitas.util.show
 import com.caioluis.receitas.util.showToast
 import dagger.android.AndroidInjection
+import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class RecipesActivity : AppCompatActivity(R.layout.activity_recipes) {
 
     @Inject

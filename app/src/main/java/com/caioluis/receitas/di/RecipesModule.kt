@@ -17,23 +17,27 @@ import com.caioluis.receitas.util.BaseSchedulerProvider
 import com.caioluis.receitas.util.SchedulerProvider
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
+@InstallIn(SingletonComponent::class)
 @Module
 object RecipesModule {
 
-    @[Provides JvmStatic]
+    @[Provides Singleton]
     fun provideScheduler(): BaseSchedulerProvider = SchedulerProvider()
 
     // Use Cases
-    @[Provides JvmStatic]
+    @[Provides Singleton]
     fun provideAddIngredientsOnListUseCase(): AddIngredientsOnListUseCase =
         AddIngredientsOnListUseCaseImpl()
 
-    @[Provides JvmStatic]
+    @[Provides Singleton]
     fun provideRemoveIngredientUseCase(): RemoveIngredientUseCase =
         RemoveIngredientUseCaseImpl()
 
-    @[Provides JvmStatic]
+    @[Provides Singleton]
     fun provideGetRecipesByIngredientsUseCase(
         dataSource: RecipesDataSource,
         scheduler: BaseSchedulerProvider
@@ -41,12 +45,12 @@ object RecipesModule {
 
     // Mappers
 
-    @[Provides JvmStatic]
+    @[Provides Singleton]
     fun provideRecipeDetailsMapper(): RecipeDetailsMapper =
         RecipeDetailsMapper.RecipeDetailsMapperImpl()
 
     // Presentation
-    @[Provides JvmStatic]
+    @[Provides Singleton]
     fun provideRecipesPresenter(
         recipesInteractor: RecipesInteractor,
         recipesReducer: RecipesReducer,
@@ -57,13 +61,13 @@ object RecipesModule {
         schedulerProvider = scheduler
     )
 
-    @[Provides JvmStatic]
+    @[Provides Singleton]
     fun provideRecipesReducer(
         addIngredientsOnListUseCase: AddIngredientsOnListUseCase,
         removeIngredientUseCase: RemoveIngredientUseCase
     ): RecipesReducer = RecipesReducerImpl(addIngredientsOnListUseCase, removeIngredientUseCase)
 
-    @[Provides JvmStatic]
+    @[Provides Singleton]
     fun provideRecipesInteractor(
         getRecipesByIngredientsUseCase: GetRecipesByIngredientsUseCase
     ): RecipesInteractor = RecipesInteractorImpl(getRecipesByIngredientsUseCase)
