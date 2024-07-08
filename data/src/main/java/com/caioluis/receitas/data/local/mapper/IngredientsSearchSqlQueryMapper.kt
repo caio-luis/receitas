@@ -37,15 +37,12 @@ interface IngredientsSearchSqlQueryMapper {
             query: StringBuilder
         ): SupportSQLiteQuery {
             return object : SupportSQLiteQuery {
-                override fun getSql(): String {
-                    return query.toString()
-                }
+                override val argCount: Int
+                    get() = parametersSize
+                override val sql: String
+                    get() = query.toString()
 
-                override fun getArgCount(): Int {
-                    return parametersSize
-                }
-
-                override fun bindTo(statement: SupportSQLiteProgram?) = Unit
+                override fun bindTo(statement: SupportSQLiteProgram) = Unit
             }
         }
     }

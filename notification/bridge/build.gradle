@@ -1,7 +1,0 @@
-apply from: "$rootDir/buildSrc/java-config.gradle"
-apply plugin: 'kotlin-kapt'
-
-dependencies {
-    implementation Dependencies.dagger
-    kapt Dependencies.daggerCompiler
-}

@@ -6,23 +6,18 @@ import com.caioluis.receitas.domain.usecase.GetRecipesByIngredientsUseCase
 import com.caioluis.receitas.data.RecipesDataSource
 import com.caioluis.receitas.presentation.ui.RecipeUiEvent
 import com.caioluis.receitas.util.TrampolineSchedulerProvider
+import io.mockk.mockk
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
-import org.mockito.Mockito.mock
 
 class RecipesPresenterTest {
 
-    @Mock
     private lateinit var getRecipesByIngredientsUseCase: GetRecipesByIngredientsUseCase
 
-    @Mock
     private lateinit var recipesDataSource: RecipesDataSource
 
-    @Mock
     private lateinit var interactor: RecipesInteractor
 
-    @Mock
     private lateinit var reducer: RecipesReducer
 
     private lateinit var schedulerProvider: TrampolineSchedulerProvider
@@ -30,11 +25,11 @@ class RecipesPresenterTest {
 
     @Before
     fun setUp() {
-        getRecipesByIngredientsUseCase = mock(GetRecipesByIngredientsUseCase::class.java)
-        recipesDataSource = mock(RecipesDataSource::class.java)
+        getRecipesByIngredientsUseCase = mockk(relaxed = true)
+        recipesDataSource = mockk(relaxed = true)
         schedulerProvider = TrampolineSchedulerProvider()
-        interactor = mock(RecipesInteractor::class.java)
-        reducer = mock(RecipesReducer::class.java)
+        interactor = mockk(relaxed = true)
+        reducer = mockk(relaxed = true)
         presenter = RecipesPresenter(
             recipesInteractor = interactor,
             recipesReducer = reducer,

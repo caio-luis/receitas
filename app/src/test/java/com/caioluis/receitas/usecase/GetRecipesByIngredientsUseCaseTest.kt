@@ -7,25 +7,22 @@ import com.caioluis.receitas.presentation.mapper.toViewModel
 import com.caioluis.receitas.presentation.structure.RecipesEffect
 import com.caioluis.receitas.toDomain
 import com.caioluis.receitas.util.TrampolineSchedulerProvider
+import io.mockk.every
+import io.mockk.mockk
 import io.reactivex.Observable
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
-import org.mockito.Mockito.anyList
-import org.mockito.Mockito.mock
-import org.mockito.Mockito.`when` as whenever
 
 class GetRecipesByIngredientsUseCaseTest {
 
     private lateinit var getRecipesByIngredientsUseCase: GetRecipesByIngredientsUseCase
     private lateinit var scheduler: TrampolineSchedulerProvider
 
-    @Mock
     private lateinit var recipesDataSourceMock: RecipesDataSource
 
     @Before
     fun setUp() {
-        recipesDataSourceMock = mock(RecipesDataSource::class.java)
+        recipesDataSourceMock = mockk(relaxed = true)
         scheduler = TrampolineSchedulerProvider()
         getRecipesByIngredientsUseCase =
             GetRecipesByIngredientsUseCaseImpl(recipesDataSourceMock, scheduler)
@@ -33,8 +30,9 @@ class GetRecipesByIngredientsUseCaseTest {
 
     @Test
     fun `should return Loading and ShowRecipes effect in sequence`() {
-        whenever(recipesDataSourceMock.getRecipes(anyList()))
-            .thenReturn(Observable.just(listOf()))
+        every{
+            recipesDataSourceMock.getRecipes(any())
+        } returns Observable.just(listOf())
 
         val response = getRecipesByIngredientsUseCase.invoke(listOf())
 
@@ -48,8 +46,9 @@ class GetRecipesByIngredientsUseCaseTest {
     fun `should return Loading and ShowRecipes effect in sequence with content`() {
         val recipesMock = Fixtures.getRecipesMockFromJsonResource().map { it.toDomain() }
 
-        whenever(recipesDataSourceMock.getRecipes(anyList()))
-            .thenReturn(Observable.just(recipesMock))
+        every {
+            recipesDataSourceMock.getRecipes(any())
+        } returns Observable.just(recipesMock)
 
         val response = getRecipesByIngredientsUseCase.invoke(listOf())
 

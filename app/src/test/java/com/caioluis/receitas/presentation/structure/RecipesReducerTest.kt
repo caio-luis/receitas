@@ -3,27 +3,23 @@ package com.caioluis.receitas.presentation.structure
 import com.caioluis.receitas.domain.model.IngredientsToSearch
 import com.caioluis.receitas.domain.usecase.AddIngredientsOnListUseCase
 import com.caioluis.receitas.domain.usecase.RemoveIngredientUseCase
+import io.mockk.every
+import io.mockk.impl.annotations.MockK
+import io.mockk.mockk
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
-import org.mockito.Mock
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.mock
 
 @RunWith(Parameterized::class)
 class RecipesReducerTest(private val parameter: Parameter) {
 
     private lateinit var recipesReducer: RecipesReducerImpl
 
-    @Mock
-    private var addIngredientsOnListUseCase: AddIngredientsOnListUseCase =
-        mock(AddIngredientsOnListUseCase::class.java)
+    private var addIngredientsOnListUseCase: AddIngredientsOnListUseCase = mockk(relaxed = true)
 
-    @Mock
-    private var removeIngredientUseCase: RemoveIngredientUseCase =
-        mock(RemoveIngredientUseCase::class.java)
+    private var removeIngredientUseCase: RemoveIngredientUseCase = mockk(relaxed = true)
 
     companion object {
         @JvmStatic
@@ -52,18 +48,17 @@ class RecipesReducerTest(private val parameter: Parameter) {
     @Before
     fun setup() {
         recipesReducer = RecipesReducerImpl(addIngredientsOnListUseCase, removeIngredientUseCase)
-
-        `when`(
+        every {
             addIngredientsOnListUseCase.invoke(
                 ingredients = IngredientsToSearch(), ingredient = "teste"
             )
-        ).thenReturn(IngredientsToSearch(mutableListOf("teste")))
+        } returns IngredientsToSearch(mutableListOf("teste"))
 
-        `when`(
+        every {
             removeIngredientUseCase.invoke(
                 ingredients = IngredientsToSearch(), ingredient = "teste"
             )
-        ).thenReturn(IngredientsToSearch())
+        } returns IngredientsToSearch()
     }
 
     @Test

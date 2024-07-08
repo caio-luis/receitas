@@ -47,8 +47,9 @@ class SplashActivity : AppCompatActivity(R.layout.activity_splash) {
             val recipes = Gson().fromJson<List<Recipe>>(
                 recipesJsonString,
                 object : TypeToken<List<Recipe>>() {}.type
-            )
+            ).filter { it.ingredients.orEmpty().isNotEmpty() && it.sections.orEmpty().isNotEmpty() }
 
+            val json = Gson().toJson(recipes)
             disposable += Observable.just(Unit)
                 .subscribeOn(schedulerProvider.io())
                 .doOnError { showToast(it.message.toString()) }
